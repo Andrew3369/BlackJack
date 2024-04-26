@@ -6,10 +6,12 @@
 
 int main()
 {
-
+	// Debugging stuff
 	Player player(1000);
 	Dealer dealer;
 	Deck deck;
+
+	//deck.displayDeck();
 	
 	player.addCard(deck.dealCard());
 	dealer.addCard(deck.dealCard());
@@ -24,8 +26,6 @@ int main()
 
 	std::cout << "Player's Hand: ";
 	player.displayHand();
-	std::cout << std::endl;
-
-
+	std::cout << std::endl << "Hand total: " << player.getTotalValue();
 	return 0;
 }

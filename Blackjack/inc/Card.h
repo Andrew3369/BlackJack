@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+// Pretty self explanatory
 enum class Suit
 {
 	Hearts,
@@ -10,7 +11,6 @@ enum class Suit
 	Spades,
 	Count
 };
-
 enum class Rank
 {
 	Ace,
@@ -31,5 +31,7 @@ public:
 	Card(Suit s, Rank r) : suit(s), rank(r) {}
 
 	void display() const;
-	~Card();
+
+	int getValue() const;
+
 };

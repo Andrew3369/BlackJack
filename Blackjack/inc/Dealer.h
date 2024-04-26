@@ -13,4 +13,5 @@ public:
 
 	void displayHand();
 	void addCard(Card card);
+	int getTotalValue() const;
 };

@@ -22,4 +22,6 @@ public:
 
 	void addCard(Card card);
 
+	int getTotalValue() const;
+
 };

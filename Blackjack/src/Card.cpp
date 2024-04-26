@@ -6,6 +6,7 @@ void Card::display() const
 	string suitStr;
 	string rankStr;
 
+	// my eyes hurt even more now
 	switch (suit)
 	{
 		case Suit::Hearts:
@@ -21,7 +22,6 @@ void Card::display() const
 				suitStr = "Spades";
 				break;
 	}
-
 	switch (rank)
 	{
 		case Rank::Ace:
@@ -65,10 +65,40 @@ void Card::display() const
 				break;
 	}
 
-	std::cout << suitStr << " " << rankStr << " ";
+	std::cout << suitStr << " " << rankStr << " " << endl;
 }
 
 
-Card::~Card()
+int Card::getValue() const
 {
+	// my eyes hurt
+	switch (rank)
+	{
+		case Rank::Two:
+			return 2;
+		case Rank::Three:
+			return 3;
+		case Rank::Four:
+			return 4;
+		case Rank::Five:
+			return 5;
+		case Rank::Six:
+			return 6;
+		case Rank::Seven:
+			return 7;
+		case Rank::Eight:
+			return 8;
+		case Rank::Nine:
+			return 9;
+
+		// antyhing 10 and over is the same
+		case Rank::Ten:
+		case Rank::Jack:
+		case Rank::Queen:
+		case Rank::King:
+			return 10;
+		case Rank::Ace:
+			// the value of Ace can be 1 or 11 depending on the situation
+			return 11; // not sure how to handle this
+	}
 }

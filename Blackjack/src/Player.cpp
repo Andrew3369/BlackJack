@@ -22,6 +22,16 @@ void Player::addCard(Card card)
 	hand.push_back(card); // add card to hand
 }
 
+int Player::getTotalValue() const
+{
+	int totalValue = 0;
+	for (const Card& card : hand) 
+	{
+		totalValue += card.getValue();
+	}
+	return totalValue;
+}
+
 
 void Player::displayHand() const
 {
