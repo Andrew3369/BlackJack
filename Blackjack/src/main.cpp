@@ -6,28 +6,25 @@
 
 int main()
 {
-	Card card(Suit::Hearts, Rank::Ace);
-	Player player(100);
+
+	Player player(1000);
 	Dealer dealer;
-
-	player.addCardToHand(card);
-	
 	Deck deck;
-	deck.displayDeck();
-	deck.dealCard().display();
+	
+	player.addCard(deck.dealCard());
+	dealer.addCard(deck.dealCard());
+
+	player.addCard(deck.dealCard());
+	dealer.addCard(deck.dealCard());
+	
+
+	std::cout << "Dealer's Hand: ";
+	dealer.displayHand();
 	std::cout << std::endl;
-	deck.burnCard();
-	deck.displayDeck();
-	int run = 0;
-	
-	// Main Game loop
-	for (;;)
-	{
-		std::cout << "Dealer's Hand: ";
 
-	}
-
-	
+	std::cout << "Player's Hand: ";
+	player.displayHand();
+	std::cout << std::endl;
 
 
 	return 0;

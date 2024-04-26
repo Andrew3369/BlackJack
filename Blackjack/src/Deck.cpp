@@ -1,4 +1,5 @@
 #include "../inc/Deck.h"
+#include "../inc/Player.h"
 
 Deck::Deck()
 {
@@ -10,7 +11,7 @@ Deck::Deck()
             cards.push_back(Card(static_cast<Suit>(suit), static_cast<Rank>(rank)));
         }
     }
-    shuffle();
+    shuffle(); // shuffle after initializing
 }
 
 
@@ -45,8 +46,8 @@ Card Deck::dealCard()
     }
     else
     {
-        // idk i jyust threw this here, not sure how to handle an empty deck 
-        return Card(Suit::Hearts, Rank::Ace);
+        // idk i just threw this here, not sure how to handle an empty deck
+        return Card(Suit::Spades, Rank::Seven);
     }
 }
 

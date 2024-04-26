@@ -14,12 +14,12 @@ public:
 
 	void displayHand() const;
 
-	void addCardToHand(Card card);
-
 	void addChips(int amount);
 
-	int getChips() const;
+	int constexpr getChips() const;
 
 	void removeChips(int amount);
+
+	void addCard(Card card);
 
 };

@@ -16,7 +16,6 @@ private:
 public:
     Deck();
 
-
     void displayDeck();
 
     Card dealCard();

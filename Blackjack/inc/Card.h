@@ -25,7 +25,7 @@ class Card
 private:
 	Suit suit;
 	Rank rank;
-	std::string suitEmojis[4] = { "\u2665", "\u2666", "\u2663", "\u2660" };
+	//std::string suitEmojis[4] = { "\u2665", "\u2666", "\u2663", "\u2660" };
 
 public:
 	Card(Suit s, Rank r) : suit(s), rank(r) {}

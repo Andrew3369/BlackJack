@@ -65,7 +65,7 @@ void Card::display() const
 				break;
 	}
 
-	std::cout << suitStr << " " << rankStr << std::endl;
+	std::cout << suitStr << " " << rankStr << " ";
 }
 
 
