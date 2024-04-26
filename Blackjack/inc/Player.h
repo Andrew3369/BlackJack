@@ -1,0 +1,25 @@
+#pragma once
+#include "../inc/Card.h"
+#include <vector>
+
+
+class Player
+{
+private:
+	int chips;
+	std::vector<Card> hand;
+
+public:
+	Player(int startingChips) : chips(startingChips) {}
+
+	void displayHand() const;
+
+	void addCardToHand(Card card);
+
+	void addChips(int amount);
+
+	int getChips() const;
+
+	void removeChips(int amount);
+
+};
