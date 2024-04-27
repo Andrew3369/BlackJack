@@ -3,6 +3,7 @@
 #include "../inc/Player.h"
 #include "../inc/Dealer.h"
 #include "../inc/Deck.h"
+#include <chrono> // eventually :c
 
 int main()
 {
@@ -18,6 +19,16 @@ int main()
 
 	player.addCard(deck.dealCard());
 	dealer.addCard(deck.dealCard());
+
+	std::cout << "Dealer's Hand: ";
+	dealer.displayHand();
+	std::cout << std::endl << "Hand total: " << dealer.getFirstCardValue();
+	std::cout << std::endl << std::endl;
+
+	std::cout << "Player's Hand: ";
+	player.displayHand();
+	std::cout << std::endl << "Hand total: " << player.getTotalValue();
+
 	for (;;)
 	{
 		//player.addCard(deck.dealCard());
@@ -26,14 +37,15 @@ int main()
 		//player.addCard(deck.dealCard());
 		//dealer.addCard(deck.dealCard());
 
-		std::cout << "Dealer's Hand: ";
+		/*std::cout << "Dealer's Hand: ";
 		dealer.displayHand();
 		std::cout << std::endl << "Hand total: " << dealer.getFirstCardValue();
 		std::cout << std::endl << std::endl;
 
 		std::cout << "Player's Hand: ";
 		player.displayHand();
-		std::cout << std::endl << "Hand total: " << player.getTotalValue();
+		std::cout << std::endl << "Hand total: " << player.getTotalValue();*/
+
 		std::cout << std::endl << std::endl << "1. Hit | 2. Stand | 3. Double\n";
 		std::cin >> input;
 
@@ -43,9 +55,10 @@ int main()
 			player.addCard(deck.dealCard());
 			break;
 		case 2:
-			dealer.displayHand();
+			dealer.displayFullHand();
 			dealer.getTotalValue();
-			dealer.addCard(deck.dealCard());
+			std::cout << std::endl << "Hand total: " << dealer.getTotalValue();
+			//dealer.addCard(deck.dealCard());
 			break;
 		}
 	}
