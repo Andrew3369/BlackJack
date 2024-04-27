@@ -65,7 +65,7 @@ void Card::display() const
 				break;
 	}
 
-	std::cout << suitStr << " " << rankStr << " " << endl;
+	std::cout << suitStr << " " << rankStr << " ";
 }
 
 
@@ -91,7 +91,7 @@ int Card::getValue() const
 		case Rank::Nine:
 			return 9;
 
-		// antyhing 10 and over is the same
+		// anything 10 and over is the same
 		case Rank::Ten:
 		case Rank::Jack:
 		case Rank::Queen:

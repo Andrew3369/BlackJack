@@ -1,29 +1,31 @@
 #include "../inc/Dealer.h"
 
-Dealer::Dealer()
-{
-}
+Dealer::Dealer() {}
 
-Dealer::~Dealer()
-{
-}
+Dealer::~Dealer() {}
 
+// Start of the game (i think this is a good approach?)
 void Dealer::displayHand()
 {
-	// Just in case things break :/
-	/*for (const Card& card : hand)
-	{
-		card.display();
-	}*/
-
+	// :3
 	if (!hand.empty())
 	{
 		hand[0].display();
-		std::cout << " [Hidden Card]" << std::endl;
+		std::cout << " [Hidden Card]";
 	}
 	else
 	{
 		std::cout << "No cards in hand?" << std::endl;
+	}
+}
+
+// after the player chooses their action, THEN display the full hand
+void Dealer::displayFullHand()
+{
+	// just in case things break :/
+	for (const Card& card : hand)
+	{
+		card.display();
 	}
 }
 
@@ -40,4 +42,13 @@ int Dealer::getTotalValue() const
 		totalValue += card.getValue();
 	}
 	return totalValue;
+}
+
+int Dealer::getFirstCardValue()
+{
+	if (!hand.empty())
+	{
+		return hand[0].getValue();
+	}
+	return NULL;
 }
