@@ -65,7 +65,9 @@ void Card::display() const
 				break;
 	}
 
-	std::cout << suitStr << " " << rankStr << " ";
+	//std::cout << suitStr << " " << rankStr << " ";
+
+	// ASCII art in dev
 }
 
 
@@ -97,6 +99,7 @@ int Card::getValue() const
 		case Rank::Queen:
 		case Rank::King:
 			return 10;
+
 		case Rank::Ace:
 			// the value of Ace can be 1 or 11 depending on the situation
 			return 11; // not sure how to handle this

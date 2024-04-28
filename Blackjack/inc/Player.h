@@ -16,7 +16,7 @@ public:
 
 	void addChips(int amount);
 
-	int constexpr getChips() const;
+	int getChips() const;
 
 	void removeChips(int amount);
 

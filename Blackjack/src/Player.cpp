@@ -7,7 +7,7 @@ void Player::addChips(int amount)
 }
 
 
-int constexpr Player::getChips() const
+int Player::getChips() const
 {
 	return chips; // return the current amount of chips
 }
@@ -31,7 +31,6 @@ int Player::getTotalValue() const
 	}
 	return totalValue;
 }
-
 
 void Player::displayHand() const
 {

@@ -7,7 +7,6 @@ Dealer::~Dealer() {}
 // Start of the game (i think this is a good approach?)
 void Dealer::displayHand()
 {
-	// :3
 	if (!hand.empty())
 	{
 		hand[0].display();

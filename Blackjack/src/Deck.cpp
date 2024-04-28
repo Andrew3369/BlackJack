@@ -1,9 +1,9 @@
 #include "../inc/Deck.h"
 #include "../inc/Player.h"
 
+// Initialize the deck
 Deck::Deck()
 {
-    // Initialize the deck
     for (int suit = 0; suit < static_cast<int>(Suit::Count); ++suit)
     {
         for (int rank = 0; rank <= static_cast<int>(Rank::King); ++rank)
@@ -11,13 +11,12 @@ Deck::Deck()
             cards.push_back(Card(static_cast<Suit>(suit), static_cast<Rank>(rank)));
         }
     }
-    shuffle(); // shuffle after initializing
+    shuffle();
 }
 
-
+// shuffle the deck
 void Deck::shuffle()
 {
-    // Shuffle the deck
 	std::random_device rd;
 	std::mt19937 g(rd());
 	std::shuffle(cards.begin(), cards.end(), g);
