@@ -64,10 +64,7 @@ void Card::display() const
 				rankStr = "King";
 				break;
 	}
-
-	//std::cout << suitStr << " " << rankStr << " ";
-
-	// ASCII art in dev
+	std::cout << suitStr << " " << rankStr << " ";
 }
 
 

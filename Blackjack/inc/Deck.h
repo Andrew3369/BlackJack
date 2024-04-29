@@ -12,13 +12,12 @@ private:
 	std::vector<Card> cards; // Vector to store cards in the deck
 
     void shuffle();
-    void burnCard(); // not sure why i added this lol
+    void CreateDeck();
+    void burnDeck();
 
 public:
     Deck();
-
     void displayDeck();
-
     Card dealCard();
 
 };

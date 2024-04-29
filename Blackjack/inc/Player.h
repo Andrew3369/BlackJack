@@ -13,15 +13,9 @@ public:
 	Player(int startingChips) : chips(startingChips) {}
 
 	void displayHand() const;
-
 	void addChips(int amount);
-
 	int getChips() const;
-
 	void removeChips(int amount);
-
 	void addCard(Card card);
-
 	int getTotalValue() const;
-
 };

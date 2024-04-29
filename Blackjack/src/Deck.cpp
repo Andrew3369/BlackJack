@@ -1,27 +1,46 @@
 #include "../inc/Deck.h"
 #include "../inc/Player.h"
+#include <thread>
 
-// Initialize the deck
 Deck::Deck()
 {
-    for (int suit = 0; suit < static_cast<int>(Suit::Count); ++suit)
+    std::thread createDeck(&Deck::CreateDeck, this);
+	createDeck.join();
+	std::thread shuffleDeck(&Deck::shuffle, this);
+	shuffleDeck.join();
+}
+
+void Deck::CreateDeck()
+{
+    try
     {
-        for (int rank = 0; rank <= static_cast<int>(Rank::King); ++rank)
+        for (int suit = 0; suit < static_cast<int>(Suit::Count); ++suit)
         {
-            cards.push_back(Card(static_cast<Suit>(suit), static_cast<Rank>(rank)));
+            for (int rank = 0; rank <= static_cast<int>(Rank::King); ++rank)
+            {
+                cards.push_back(Card(static_cast<Suit>(suit), static_cast<Rank>(rank)));
+            }
         }
     }
-    shuffle();
+	catch (const std::exception& ex)
+	{
+		std::cerr << "Exception occured inside of [Deck::CreateDeck()" << ex.what() << std::endl;
+	}
 }
 
-// shuffle the deck
 void Deck::shuffle()
 {
-	std::random_device rd;
-	std::mt19937 g(rd());
-	std::shuffle(cards.begin(), cards.end(), g);
+    try
+    {
+        std::random_device rd;
+        std::mt19937 g(rd());
+        std::shuffle(cards.begin(), cards.end(), g);
+    }
+    catch (const std::exception& ex)
+    {
+        std::cerr << "Exception occured inside of [Deck::CreateDeck()" << ex.what() << std::endl;
+    }
 }
-
 
 void Deck::displayDeck()
 {
@@ -50,8 +69,7 @@ Card Deck::dealCard()
     }
 }
 
-void Deck::burnCard()
+void Deck::burnDeck()
 {
-    if (!cards.empty())
-        cards.pop_back();
+    cards.clear();
 }
