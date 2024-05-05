@@ -10,7 +10,10 @@ private:
 	std::vector<Card> hand;
 
 public:
-	Player(int startingChips) : chips(startingChips) {}
+	Player(int startingChips)
+	{
+		chips = startingChips;
+	}
 
 	void displayHand() const;
 	void addChips(int amount);

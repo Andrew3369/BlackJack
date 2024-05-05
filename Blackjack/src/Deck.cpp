@@ -47,7 +47,6 @@ void Deck::displayDeck()
     // For each card in the vector deck, display each card
 	for (const Card& card : cards)
 	{
-		//print to console
 		card.display();
 	}
 }
@@ -57,7 +56,7 @@ Card Deck::dealCard()
     // If the cards vector is NOT empty
     if (!cards.empty())
     {
-        // Remove the card from the top and display it
+        // Remove the card from the top
         Card card = cards.back();
         cards.pop_back();
         return card;
