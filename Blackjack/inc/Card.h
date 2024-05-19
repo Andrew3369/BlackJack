@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 
-// Pretty self explanatory
 enum class Suit
 {
 	Hearts,

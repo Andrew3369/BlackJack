@@ -43,7 +43,7 @@ int Dealer::getTotalValue() const
 	return totalValue;
 }
 
-int Dealer::getFirstCardValue()
+int Dealer::getFirstCardValue() const
 {
 	if (!hand.empty())
 	{

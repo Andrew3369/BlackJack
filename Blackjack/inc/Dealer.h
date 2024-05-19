@@ -14,5 +14,5 @@ public:
 	void displayFullHand();
 	void addCard(Card card);
 	int getTotalValue() const;
-	int getFirstCardValue();
+	int getFirstCardValue() const;
 };

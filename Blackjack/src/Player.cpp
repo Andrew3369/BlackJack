@@ -32,6 +32,16 @@ int Player::getTotalValue() const
 	return totalValue;
 }
 
+void Player::doubleDown()
+{
+	doubleDowned = true; // player has doubled down
+}
+
+bool Player::doubleDownded() const
+{
+	return doubleDowned; // return if player has doubled down
+}
+
 void Player::displayHand() const
 {
 	// For both cards in the vector 'hand', display each
