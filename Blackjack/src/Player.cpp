@@ -1,4 +1,4 @@
-#include "../inc/Player.h"
+#include "../inc/Player.hpp"
 
 
 void Player::addChips(int amount)

@@ -32,19 +32,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\Card.h">
+    <ClInclude Include="inc\Card.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Deck.h">
+    <ClInclude Include="inc\Deck.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Player.h">
+    <ClInclude Include="inc\Player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Dealer.h">
+    <ClInclude Include="inc\Dealer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\main.h">
+    <ClInclude Include="inc\main.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

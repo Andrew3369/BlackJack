@@ -1,4 +1,4 @@
-﻿#include "../inc/Card.h"
+﻿#include "../inc/Card.hpp"
 using namespace std;
 
 void Card::display() const

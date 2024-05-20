@@ -1,5 +1,4 @@
-#include "../inc/main.h"
-
+#include "../inc/main.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -13,7 +12,6 @@ int main(int argc, char* argv[])
 
 	blackjack::InitializeGame(player, dealer, deck);
 
-	//Display(player, dealer);
 	// Main game
 	for (;;)
 	{
@@ -31,7 +29,7 @@ int main(int argc, char* argv[])
 		case 1: // Hit
 			player->addCard(deck.dealCard());
 			//player.displayHand(); 
-			std::cout << std::endl << "Hand total: " << player->getTotalValue() << std::endl;
+			//std::cout << std::endl << "Hand total: " << player->getTotalValue() << std::endl;
 			break;
 
 		case 2: // Stand
@@ -65,6 +63,7 @@ int main(int argc, char* argv[])
 		case 3: // Double down
 			player->doubleDown();
 			player->addCard(deck.dealCard());
+			player->addChips(input * 2); // double down
 			break;
 
 		//case 4: // Split (whenever I get to this :/)

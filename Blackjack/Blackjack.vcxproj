@@ -134,11 +134,11 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\Card.h" />
-    <ClInclude Include="inc\Dealer.h" />
-    <ClInclude Include="inc\Deck.h" />
-    <ClInclude Include="inc\main.h" />
-    <ClInclude Include="inc\Player.h" />
+    <ClInclude Include="inc\Card.hpp" />
+    <ClInclude Include="inc\Dealer.hpp" />
+    <ClInclude Include="inc\Deck.hpp" />
+    <ClInclude Include="inc\main.hpp" />
+    <ClInclude Include="inc\Player.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

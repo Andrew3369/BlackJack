@@ -1,5 +1,5 @@
-#include "../inc/Deck.h"
-#include "../inc/Player.h"
+#include "../inc/Deck.hpp"
+#include "../inc/Player.hpp"
 #include <thread>
 
 Deck::Deck()

@@ -1,5 +1,5 @@
 #pragma once
-#include "../inc/Card.h"
+#include "../inc/Card.hpp"
 #include <vector>
 #include <vector>
 #include <algorithm>

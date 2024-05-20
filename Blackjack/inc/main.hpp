@@ -1,8 +1,8 @@
 #include <iostream>
-#include "../inc/Card.h"
-#include "../inc/Player.h"
-#include "../inc/Dealer.h"
-#include "../inc/Deck.h"
+#include "../inc/Card.hpp"
+#include "../inc/Player.hpp"
+#include "../inc/Dealer.hpp"
+#include "../inc/Deck.hpp"
 #include <chrono>
 #include <thread>
 #include <cstdlib>
@@ -27,21 +27,12 @@ namespace blackjack
 
 	void checkConditions(Player* player, Dealer* dealer)
 	{
-		// Player wagers the # of chips
 		int input = 0;
 		if (player->getChips() <= 0)
 		{
 			std::cout << "You're out of chips! Game over!\n";
 			blackjack::killGame(player, dealer);
 		}
-		/*else
-		{
-			std::cout << "Total Chips: " << player->getChips() << "\nHow many chips do you want to bet: ";
-			std::cin >> input;
-			player->removeChips(input);
-			std::cout << std::endl;
-		}*/
-
 		if (player->getTotalValue() > BLACKJACK)
 		{
 			std::cout << "Busted! Dealer Wins!\n";
