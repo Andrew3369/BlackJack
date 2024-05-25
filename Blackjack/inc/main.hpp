@@ -1,11 +1,11 @@
 #include <iostream>
+#include <chrono>
+#include <thread>
+#include <cstdlib>
 #include "../inc/Card.hpp"
 #include "../inc/Player.hpp"
 #include "../inc/Dealer.hpp"
 #include "../inc/Deck.hpp"
-#include <chrono>
-#include <thread>
-#include <cstdlib>
 
 namespace blackjack
 {
@@ -52,9 +52,14 @@ namespace blackjack
 			std::cout << "You're out of chips! Game over!\n";
 			blackjack::killGame(player, dealer, deck);
 		}
-		if (player->getTotalValue() > BLACKJACK)
+		else if (player->getTotalValue() > BLACKJACK)
 		{
 			std::cout << "Busted! Dealer Wins!\n";
+		}
+		else if (dealer->getTotalValue() > BLACKJACK)
+		{
+			std::cout << "Dealer busts! You win!\n";
+			//player->addChips(input * 2); // later
 		}
 		else if (player->getTotalValue() == BLACKJACK)
 		{

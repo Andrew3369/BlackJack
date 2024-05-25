@@ -24,7 +24,7 @@ void Deck::CreateDeck()
     }
 	catch (const std::exception& ex)
 	{
-		std::cerr << "Exception occured inside of [Deck::CreateDeck()" << ex.what() << std::endl;
+		std::cerr << "Exception occured inside of [Deck::CreateDeck()] " << ex.what() << std::endl;
 	}
 }
 

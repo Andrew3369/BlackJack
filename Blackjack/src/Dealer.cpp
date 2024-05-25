@@ -21,7 +21,6 @@ void Dealer::displayHand()
 // after the player chooses their action, THEN display the full hand
 void Dealer::displayFullHand()
 {
-	// just in case things break :/
 	for (const Card& card : hand)
 	{
 		card.display();

@@ -14,11 +14,11 @@ int main(int argc, char* argv[])
 	// Main game
 	for (;;)
 	{
-		blackjack::checkConditions(player, dealer, deck);
 		blackjack::Display(player, dealer);
+		blackjack::checkConditions(player, dealer, deck);
 
 
-		std::cout << "\n\n1. Hit | 2. Stand | 3. Double\n";
+		std::cout << "\n1. Hit | 2. Stand | 3. Double\n";
 		std::cin >> input;
 
 		//system("cls"); // Clear the console, easier to read and debug
@@ -38,6 +38,8 @@ int main(int argc, char* argv[])
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 				blackjack::Display(player, dealer);
 				std::cout << std::endl << "Hand total: " << dealer->getTotalValue() << std::endl;
+				//blackjack::checkConditions(player, dealer, deck);
+				// ^^^ should probably be here
 			}
 			blackjack::checkConditions(player, dealer, deck);
 			blackjack::ResetGame(player, dealer, deck);
