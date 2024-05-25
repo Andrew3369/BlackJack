@@ -27,7 +27,7 @@ namespace blackjack
 
 	void checkConditions(Player* player, Dealer* dealer)
 	{
-		int input = 0;
+		//int input = 0; // later
 		if (player->getChips() <= 0)
 		{
 			std::cout << "You're out of chips! Game over!\n";
@@ -40,12 +40,15 @@ namespace blackjack
 		else if (player->getTotalValue() == BLACKJACK)
 		{
 			std::cout << "Blackjack! You win!\n";
-			player->addChips(input * 2);
-			return;
+			//player->addChips(input * 2); // later
 		}
 		else if (dealer->getTotalValue() == BLACKJACK)
 		{
 			std::cout << "Dealer has blackjack! You lose!\n";
+		}
+		else if (dealer->getTotalValue() == player->getTotalValue())
+		{
+			std::cout << "Push!  Both Player and Dealer have the same amount!\n";
 		}
 	}
 

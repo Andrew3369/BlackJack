@@ -28,8 +28,6 @@ int main(int argc, char* argv[])
 		{
 		case 1: // Hit
 			player->addCard(deck.dealCard());
-			//player.displayHand(); 
-			//std::cout << std::endl << "Hand total: " << player->getTotalValue() << std::endl;
 			break;
 
 		case 2: // Stand
@@ -39,8 +37,7 @@ int main(int argc, char* argv[])
 				dealer->addCard(deck.dealCard());
 				std::cout << "\nDealer hits...\n";
 				std::this_thread::sleep_for(std::chrono::seconds(1));
-				std::cout << "\nDealer's hand: ";
-				dealer->displayFullHand();
+				blackjack::Display(player, dealer);
 				std::cout << std::endl << "Hand total: " << dealer->getTotalValue() << std::endl;
 			}
 
