@@ -9,29 +9,48 @@
 
 namespace blackjack
 {
-	constexpr auto BLACKJACK = 21;
+	constexpr int BLACKJACK = 21;
 
-	void InitializeGame(Player* player, Dealer* dealer, Deck deck);
-	void killGame(Player* player, Dealer* dealer);
-	void checkConditions(Player* player, Dealer* dealer);
+	void StartGame(Player* player, Dealer* dealer, Deck* deck);
+	void killGame(Player* player, Dealer* dealer, Deck* deck);
+	void checkConditions(Player* player, Dealer* dealer, Deck* deck);
 	void Display(Player* player, Dealer* dealer);
+	// new
+	void checkPlayerConditions(Player* player);
+	void checkDealerConditions(Dealer* dealer);
+	void ResetGame(Player* player, Dealer* dealer, Deck* deck);
 
-	void InitializeGame(Player* player, Dealer* dealer, Deck deck)
+
+	void StartGame(Player* player, Dealer* dealer, Deck* deck)
 	{
 		// Deal the cards
-		player->addCard(deck.dealCard());
-		dealer->addCard(deck.dealCard());
-		player->addCard(deck.dealCard());
-		dealer->addCard(deck.dealCard());
+		player->addCard(deck->dealCard());
+		dealer->addCard(deck->dealCard());
+		player->addCard(deck->dealCard());
+		dealer->addCard(deck->dealCard());
 	}
 
-	void checkConditions(Player* player, Dealer* dealer)
+	void ResetGame(Player* player, Dealer* dealer, Deck* deck)
+	{
+		try
+		{
+			player->removeCards();
+			dealer->removeCards();
+			StartGame(player, dealer, deck);;
+		}
+		catch (const std::exception& error)
+		{
+			std::cerr << error.what() << std::endl;
+		}
+	}
+
+	void checkConditions(Player* player, Dealer* dealer, Deck* deck)
 	{
 		//int input = 0; // later
 		if (player->getChips() <= 0)
 		{
 			std::cout << "You're out of chips! Game over!\n";
-			blackjack::killGame(player, dealer);
+			blackjack::killGame(player, dealer, deck);
 		}
 		if (player->getTotalValue() > BLACKJACK)
 		{
@@ -48,8 +67,23 @@ namespace blackjack
 		}
 		else if (dealer->getTotalValue() == player->getTotalValue())
 		{
-			std::cout << "Push!  Both Player and Dealer have the same amount!\n";
+			std::cout << "Push! Both Player and Dealer have the same amount!\n";
 		}
+	}
+
+	// TODO:
+		/* when i get around to it, removes unnecessary ifs to check
+		for either player or dealer */
+		// mainly for the checkConditions() function, just shrink it.
+		// we can eventually remove the function above
+	void checkPlayerConditions(Player* player)
+	{
+
+	}
+
+	void checkDealerConditions(Dealer* dealer)
+	{
+
 	}
 
 	void Display(Player* player, Dealer* dealer)
@@ -64,10 +98,11 @@ namespace blackjack
 		std::cout << std::endl << "Hand total: " << player->getTotalValue() << "\nPlayer's Chips: " << player->getChips() << std::endl;
 	}
 
-	void killGame(Player* player, Dealer* dealer)
+	void killGame(Player* player, Dealer* dealer, Deck* deck)
 	{
 		delete player;
 		delete dealer;
+		delete deck;
 		exit(1);
 	}
 }

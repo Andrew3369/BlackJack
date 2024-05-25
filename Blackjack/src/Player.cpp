@@ -42,6 +42,11 @@ bool Player::doubleDownded() const
 	return doubleDowned; // return if player has doubled down
 }
 
+void Player::removeCards()
+{
+	hand.clear(); // clear the hand after winning/losing
+}
+
 void Player::displayHand() const
 {
 	// For both cards in the vector 'hand', display each

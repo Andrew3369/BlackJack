@@ -15,4 +15,5 @@ public:
 	void addCard(Card card);
 	int getTotalValue() const;
 	int getFirstCardValue() const;
+	void removeCards();
 };

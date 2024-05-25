@@ -9,6 +9,7 @@ private:
 	int chips;
 	std::vector<Card> hand;
 	bool doubleDowned;
+	//void removeCards();
 
 public:
 	Player(int startingChips)
@@ -25,4 +26,5 @@ public:
 	int getTotalValue() const;
 	void doubleDown();
 	bool doubleDownded() const;
+	void removeCards();
 };

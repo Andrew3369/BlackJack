@@ -1,21 +1,20 @@
 #include "../inc/main.hpp"
-//HELLO ANDREW 
+
+
 int main(int argc, char* argv[])
 {
 	// Initializing the game
 	Player* player = new Player(10000);
 	Dealer* dealer = new Dealer();
-	Deck deck;
-
-	// Variables
+	Deck* deck = new Deck();
 	int input = 0;
 
-	blackjack::InitializeGame(player, dealer, deck);
+	blackjack::StartGame(player, dealer, deck);
 
 	// Main game
 	for (;;)
 	{
-		blackjack::checkConditions(player, dealer);
+		blackjack::checkConditions(player, dealer, deck);
 		blackjack::Display(player, dealer);
 
 
@@ -27,21 +26,23 @@ int main(int argc, char* argv[])
 		switch (input)
 		{
 		case 1: // Hit
-			player->addCard(deck.dealCard());
+			player->addCard(deck->dealCard());
 			break;
 
 		case 2: // Stand
 			while (dealer->getTotalValue() < 17)
 			{
 				std::this_thread::sleep_for(std::chrono::seconds(1));
-				dealer->addCard(deck.dealCard());
+				dealer->addCard(deck->dealCard());
 				std::cout << "\nDealer hits...\n";
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 				blackjack::Display(player, dealer);
 				std::cout << std::endl << "Hand total: " << dealer->getTotalValue() << std::endl;
 			}
+			blackjack::checkConditions(player, dealer, deck);
+			blackjack::ResetGame(player, dealer, deck);
 
-			if (dealer->getTotalValue() > blackjack::BLACKJACK) 
+			/*if (dealer->getTotalValue() > blackjack::BLACKJACK) 
 			{
 				std::cout << "Dealer busts! You win!\n";
 				player->addChips(input * 2);
@@ -54,14 +55,14 @@ int main(int argc, char* argv[])
 			else
 			{
 				std::cout << "Dealer wins!\n";
-			}
+			}*/
 			break;
 
-		case 3: // Double down
-			player->doubleDown();
-			player->addCard(deck.dealCard());
-			player->addChips(input * 2); // double down
-			break;
+		//case 3: // Double down
+		//	player->doubleDown();
+		//	player->addCard(deck.dealCard());
+		//	player->addChips(input * 2); // double down
+		//	break;
 
 		//case 4: // Split (whenever I get to this :/)
 			//	break;
@@ -72,6 +73,6 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	blackjack::killGame(player, dealer);
+	blackjack::killGame(player, dealer, deck);
 	return 0;
 }

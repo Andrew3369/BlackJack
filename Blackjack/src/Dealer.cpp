@@ -51,3 +51,8 @@ int Dealer::getFirstCardValue() const
 	}
 	return NULL;
 }
+
+void Dealer::removeCards()
+{
+	hand.clear();
+}
