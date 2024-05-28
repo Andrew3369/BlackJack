@@ -19,6 +19,7 @@ namespace blackjack
 	void checkPlayerConditions(Player* player);
 	void checkDealerConditions(Dealer* dealer);
 	void ResetGame(Player* player, Dealer* dealer, Deck* deck);
+	void DealerStandPlay();
 
 
 	void StartGame(Player* player, Dealer* dealer, Deck* deck)
@@ -89,6 +90,21 @@ namespace blackjack
 	void checkDealerConditions(Dealer* dealer)
 	{
 
+	}
+
+	void DealerStandPlay(Player* player, Dealer* dealer)
+	{
+		while (dealer->getTotalValue() < 17)
+		{
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+			dealer->addCard(deck->dealCard());
+			std::cout << "\nDealer hits...\n";
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+			blackjack::Display(player, dealer);
+			std::cout << std::endl << "Hand total: " << dealer->getTotalValue() << std::endl;
+			//blackjack::checkConditions(player, dealer, deck);
+			// ^^^ should probably be here
+		}
 	}
 
 	void Display(Player* player, Dealer* dealer)

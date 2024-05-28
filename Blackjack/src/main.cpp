@@ -30,17 +30,18 @@ int main(int argc, char* argv[])
 			break;
 
 		case 2: // Stand
-			while (dealer->getTotalValue() < 17)
-			{
-				std::this_thread::sleep_for(std::chrono::seconds(1));
-				dealer->addCard(deck->dealCard());
-				std::cout << "\nDealer hits...\n";
-				std::this_thread::sleep_for(std::chrono::seconds(1));
-				blackjack::Display(player, dealer);
-				std::cout << std::endl << "Hand total: " << dealer->getTotalValue() << std::endl;
-				//blackjack::checkConditions(player, dealer, deck);
-				// ^^^ should probably be here
-			}
+			// while (dealer->getTotalValue() < 17)
+			// {
+			// 	std::this_thread::sleep_for(std::chrono::seconds(1));
+			// 	dealer->addCard(deck->dealCard());
+			// 	std::cout << "\nDealer hits...\n";
+			// 	std::this_thread::sleep_for(std::chrono::seconds(1));
+			// 	blackjack::Display(player, dealer);
+			// 	std::cout << std::endl << "Hand total: " << dealer->getTotalValue() << std::endl;
+			// 	//blackjack::checkConditions(player, dealer, deck);
+			// 	// ^^^ should probably be here
+			// }
+			blackjack::DealerStandPlay();
 			blackjack::checkConditions(player, dealer, deck);
 			blackjack::ResetGame(player, dealer, deck);
 
