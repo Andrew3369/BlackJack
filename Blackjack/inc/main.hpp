@@ -19,7 +19,7 @@ namespace blackjack
 	void checkPlayerConditions(Player* player);
 	void checkDealerConditions(Dealer* dealer);
 	void ResetGame(Player* player, Dealer* dealer, Deck* deck);
-	void DealerStandPlay();
+	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck);
 
 
 	void StartGame(Player* player, Dealer* dealer, Deck* deck)
@@ -56,24 +56,31 @@ namespace blackjack
 		else if (player->getTotalValue() > BLACKJACK)
 		{
 			std::cout << "Busted! Dealer Wins!\n";
+			blackjack::ResetGame(player, dealer, deck);
 		}
 		else if (dealer->getTotalValue() > BLACKJACK)
 		{
 			std::cout << "Dealer busts! You win!\n";
 			//player->addChips(input * 2); // later
+			blackjack::ResetGame(player, dealer, deck);
+
 		}
 		else if (player->getTotalValue() == BLACKJACK)
 		{
 			std::cout << "Blackjack! You win!\n";
 			//player->addChips(input * 2); // later
+			blackjack::ResetGame(player, dealer, deck);
+
 		}
 		else if (dealer->getTotalValue() == BLACKJACK)
 		{
 			std::cout << "Dealer has blackjack! You lose!\n";
+			blackjack::ResetGame(player, dealer, deck);
 		}
 		else if (dealer->getTotalValue() == player->getTotalValue())
 		{
 			std::cout << "Push! Both Player and Dealer have the same amount!\n";
+			blackjack::ResetGame(player, dealer, deck);
 		}
 	}
 
@@ -92,7 +99,7 @@ namespace blackjack
 
 	}
 
-	void DealerStandPlay(Player* player, Dealer* dealer)
+	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck)
 	{
 		while (dealer->getTotalValue() < 17)
 		{
