@@ -38,7 +38,7 @@ void Deck::shuffle()
     }
     catch (const std::exception& ex)
     {
-        std::cerr << "Exception occured inside of [Deck::CreateDeck()" << ex.what() << std::endl;
+        std::cerr << "Exception occured inside of [Deck::shuffle()" << ex.what() << std::endl;
     }
 }
 
@@ -70,5 +70,12 @@ Card Deck::dealCard()
 
 void Deck::burnDeck()
 {
-    cards.clear();
+    try
+    {
+        cards.clear();
+    }
+	catch (const std::exception& ex)
+    {
+		std::cerr << "Exception occured inside of [Deck::burnDeck()] " << ex.what() << std::endl;
+	}
 }

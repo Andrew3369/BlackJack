@@ -44,7 +44,14 @@ bool Player::doubleDownded() const
 
 void Player::removeCards()
 {
-	hand.clear(); // clear the hand after winning/losing
+	try
+	{
+		hand.clear(); // clear the hand after winning/losing
+	}
+	catch (const std::exception& error)
+	{
+		std::cerr << error.what() << " Inside Player::removeCards()" << std::endl;
+	}
 }
 
 void Player::displayHand() const

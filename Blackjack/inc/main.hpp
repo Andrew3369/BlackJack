@@ -15,9 +15,8 @@ namespace blackjack
 	void killGame(Player* player, Dealer* dealer, Deck* deck);
 	void checkConditions(Player* player, Dealer* dealer, Deck* deck);
 	void Display(Player* player, Dealer* dealer);
-	// new
-	void checkPlayerConditions(Player* player);
-	void checkDealerConditions(Dealer* dealer);
+	/*void checkPlayerConditions(Player* player);
+	void checkDealerConditions(Dealer* dealer);*/
 	void ResetGame(Player* player, Dealer* dealer, Deck* deck);
 	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck);
 
@@ -25,10 +24,18 @@ namespace blackjack
 	void StartGame(Player* player, Dealer* dealer, Deck* deck)
 	{
 		// Deal the cards
-		player->addCard(deck->dealCard());
-		dealer->addCard(deck->dealCard());
-		player->addCard(deck->dealCard());
-		dealer->addCard(deck->dealCard());
+		try
+		{
+			player->addCard(deck->dealCard());
+			dealer->addCard(deck->dealCard());
+			player->addCard(deck->dealCard());
+			dealer->addCard(deck->dealCard());
+
+		}
+		catch (const std::exception& error)
+		{
+			std::cerr << error.what() << " Inside of blacjack::StartGame()"<< std::endl;
+		}
 	}
 
 	void ResetGame(Player* player, Dealer* dealer, Deck* deck)
@@ -41,7 +48,7 @@ namespace blackjack
 		}
 		catch (const std::exception& error)
 		{
-			std::cerr << error.what() << std::endl;
+			std::cerr << error.what() << " Inside of blacjack::ResetGame()" << std::endl;
 		}
 	}
 
@@ -89,7 +96,7 @@ namespace blackjack
 		for either player or dealer */
 		// mainly for the checkConditions() function, just shrink it.
 		// we can eventually remove the function above
-	void checkPlayerConditions(Player* player)
+	/*void checkPlayerConditions(Player* player)
 	{
 
 	}
@@ -97,7 +104,7 @@ namespace blackjack
 	void checkDealerConditions(Dealer* dealer)
 	{
 
-	}
+	}*/
 
 	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck)
 	{
