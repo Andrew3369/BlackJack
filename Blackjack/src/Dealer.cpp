@@ -14,7 +14,7 @@ void Dealer::displayHand()
 	}
 	else
 	{
-		std::cout << "No cards in hand?" << std::endl;
+		std::cout << "Error in Dealer::displayHand()" << std::endl;
 	}
 }
 

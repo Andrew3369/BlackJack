@@ -15,10 +15,9 @@ int main(int argc, char* argv[])
 	for (;;)
 	{
 		blackjack::Display(player, dealer);
-		blackjack::checkConditions(player, dealer, deck);
+		blackjack::GameConditions(player, dealer, deck);
 
-
-		std::cout << "\n1. Hit | 2. Stand | 3. Double\n";
+		std::cout << "\n| 1. Hit | 2. Stand | 3. Double |\n";
 		std::cin >> input;
 
 		//system("cls"); // Clear the console, easier to read and debug
@@ -31,8 +30,7 @@ int main(int argc, char* argv[])
 
 		case 2: // Stand
 			blackjack::DealerStandPlay(player, dealer, deck);
-			blackjack::checkConditions(player, dealer, deck);
-			blackjack::ResetGame(player, dealer, deck);
+			//blackjack::ResetGame(player, dealer, deck);
 			break;
 
 		//case 3: // Double down
@@ -50,6 +48,6 @@ int main(int argc, char* argv[])
 		}
 	}
 
-	blackjack::killGame(player, dealer, deck);
+	blackjack::KillGame(player, dealer, deck);
 	return 0;
 }
