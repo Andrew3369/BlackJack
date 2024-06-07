@@ -1,6 +1,6 @@
 #include "../inc/Blackjack.hpp"
 
-
+//HELLO ANDREW AND CARTER
 int main(int argc, char* argv[])
 {
 	// Initializing the game
