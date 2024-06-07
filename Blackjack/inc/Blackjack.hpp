@@ -11,15 +11,55 @@ namespace blackjack
 {
 	constexpr int BLACKJACK = 21;
 
+	void MainGameLoop(Player* player, Dealer* dealer, Deck* deck);
 	void StartGame(Player* player, Dealer* dealer, Deck* deck);
 	void KillGame(Player* player, Dealer* dealer, Deck* deck);
 	void GameConditions(Player* player, Dealer* dealer, Deck* deck);
 	/*void checkPlayerConditions(Player* player);
 	void checkDealerConditions(Dealer* dealer);*/ //eventually :p
 	void Display(Player* player, Dealer* dealer);
+	void DisplayFullHands(Player* player, Dealer* dealer);
 	void ResetGame(Player* player, Dealer* dealer, Deck* deck);
 	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck);
 
+
+	void MainGameLoop(Player* player, Dealer* dealer, Deck* deck)
+	{
+		int input = 0;
+
+		for (;;)
+		{
+			blackjack::Display(player, dealer);
+			blackjack::GameConditions(player, dealer, deck);
+
+			std::cout << "\n| 1. Hit | 2. Stand | 3. Double |\n";
+			std::cin >> input;
+
+			switch (input)
+			{
+			case 1: // Hit
+				player->addCard(deck->dealCard());
+				break;
+
+			case 2: // Stand
+				blackjack::DealerStandPlay(player, dealer, deck);
+				break;
+
+				//case 3: // Double down
+				//	player->doubleDown();
+				//	player->addCard(deck.dealCard());
+				//	player->addChips(input * 2); // double down
+				//	break;
+
+				//case 4: // Split (whenever I get to this :/)
+					//	break;
+
+			default:
+				std::cout << "Invalid input\n";
+				break;
+			}
+		}
+	}
 
 	void StartGame(Player* player, Dealer* dealer, Deck* deck)
 	{
@@ -30,11 +70,10 @@ namespace blackjack
 			dealer->addCard(deck->dealCard());
 			player->addCard(deck->dealCard());
 			dealer->addCard(deck->dealCard());
-
 		}
 		catch (const std::exception& error)
 		{
-			std::cerr << error.what() << " Inside of blacjack::StartGame()"<< std::endl;
+			std::cerr << error.what() << " Inside of blackjack::StartGame()" << std::endl;
 		}
 	}
 
@@ -48,13 +87,12 @@ namespace blackjack
 		}
 		catch (const std::exception& error)
 		{
-			std::cerr << error.what() << " Inside of blacjack::ResetGame()" << std::endl;
+			std::cerr << error.what() << " Inside of blackjack::ResetGame()" << std::endl;
 		}
 	}
 
 	void GameConditions(Player* player, Dealer* dealer, Deck* deck)
 	{
-		//int input = 0; // later
 		if (player->getChips() <= 0)
 		{
 			std::cout << "You're out of chips! Game over!\n\n";
@@ -68,7 +106,6 @@ namespace blackjack
 		else if (player->getTotalValue() == BLACKJACK)
 		{
 			std::cout << "Blackjack! You win!\n\n";
-			//player->addChips(input * 2); // later
 			blackjack::ResetGame(player, dealer, deck);
 		}
 
@@ -76,9 +113,7 @@ namespace blackjack
 		if (dealer->getTotalValue() > BLACKJACK)
 		{
 			std::cout << "Dealer busts! You win!\n\n";
-			//player->addChips(input * 2); // later
 			blackjack::ResetGame(player, dealer, deck);
-
 		}
 		else if (dealer->getTotalValue() == BLACKJACK)
 		{
@@ -92,21 +127,6 @@ namespace blackjack
 		}
 	}
 
-	// TODO:
-		/* when i get around to it, removes unnecessary ifs to check
-		for either player or dealer */
-		// mainly for the GameConditions() function, just shrink it.
-		// we can eventually remove the function above
-	/*void checkPlayerConditions(Player* player)
-	{
-
-	}
-
-	void checkDealerConditions(Dealer* dealer)
-	{
-
-	}*/
-
 	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck)
 	{
 		while (dealer->getTotalValue() < 17)
@@ -114,8 +134,8 @@ namespace blackjack
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 			dealer->addCard(deck->dealCard());
 			std::cout << "\nDealer hits...\n";
-			std::this_thread::sleep_for(std::chrono::seconds(1));
-			blackjack::Display(player, dealer);
+			//std::this_thread::sleep_for(std::chrono::seconds(1));
+			blackjack::DisplayFullHands(player, dealer);
 			blackjack::GameConditions(player, dealer, deck);
 		}
 	}
@@ -130,6 +150,18 @@ namespace blackjack
 		std::cout << "Player's Hand: ";
 		player->displayHand();
 		std::cout << std::endl << "Hand total: " << player->getTotalValue() << "\nPlayer's Chips: " << player->getChips() << std::endl;
+	}
+
+	void DisplayFullHands(Player* player, Dealer* dealer)
+	{
+		std::cout << "Dealer's Hand: ";
+		dealer->displayFullHand();
+		std::cout << std::endl << "Hand total: " << dealer->getTotalValue();
+		std::cout << std::endl << std::endl;
+
+		std::cout << "Player's Hand: ";
+		player->displayHand();
+		std::cout << std::endl << "Hand total: " << player->getTotalValue() << "\nPlayer's Chips: "; // << player->getChips() << std::endl;
 	}
 
 	void KillGame(Player* player, Dealer* dealer, Deck* deck)

@@ -37,7 +37,7 @@ void Player::doubleDown()
 	doubleDowned = true; // player has doubled down
 }
 
-bool Player::doubleDownded() const
+bool Player::getIsDoubleDowned() const
 {
 	return doubleDowned; // return if player has doubled down
 }

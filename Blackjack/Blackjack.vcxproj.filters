@@ -44,7 +44,7 @@
     <ClInclude Include="inc\Dealer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\main.hpp">
+    <ClInclude Include="inc\Blackjack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -137,7 +137,7 @@
     <ClInclude Include="inc\Card.hpp" />
     <ClInclude Include="inc\Dealer.hpp" />
     <ClInclude Include="inc\Deck.hpp" />
-    <ClInclude Include="inc\main.hpp" />
+    <ClInclude Include="inc\Blackjack.hpp" />
     <ClInclude Include="inc\Player.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

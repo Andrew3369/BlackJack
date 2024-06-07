@@ -9,14 +9,12 @@ private:
 	int chips;
 	std::vector<Card> hand;
 	bool doubleDowned;
+
+private:
 	//void removeCards();
 
 public:
-	Player(int startingChips)
-	{
-		chips = startingChips;
-		doubleDowned = false;
-	}
+	Player(int startingChips) : chips(startingChips), doubleDowned(false) {}
 	
 	void displayHand() const;
 	void addChips(int amount);
@@ -25,6 +23,6 @@ public:
 	void addCard(Card card);
 	int getTotalValue() const;
 	void doubleDown();
-	bool doubleDownded() const;
+	bool getIsDoubleDowned() const;
 	void removeCards();
 };
