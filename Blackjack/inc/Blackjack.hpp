@@ -16,13 +16,13 @@ namespace blackjack
 	void MainGameLoop(Player* player, Dealer* dealer, Deck* deck);
 	inline void StartGame(Player* player, Dealer* dealer, Deck* deck);
 	void KillGame(Player* player, Dealer* dealer, Deck* deck);
-	inline void GameConditions(Player* player, Dealer* dealer, Deck* deck);
+	inline void GameConditions(Player* player, Dealer* dealer, Deck* deck, int wageredChips);
 	/*void checkPlayerConditions(Player* player);
 	void checkDealerConditions(Dealer* dealer);*/ //eventually :p
 	inline void Display(Player* player, Dealer* dealer);
 	inline void DisplayFullHands(Player* player, Dealer* dealer);
 	inline void ResetGame(Player* player, Dealer* dealer, Deck* deck);
-	inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck);
+	inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck, int wageredChips);
 
 
 	void MainGameLoop(Player* player, Dealer* dealer, Deck* deck)
@@ -30,11 +30,15 @@ namespace blackjack
 		blackjack::StartGame(player, dealer, deck);
 
 		int input = 0;
+		int chipsWager = 0;
+
+		std::cout << "How much chips do you want to wager?\n";
+		std::cin >> chipsWager;
 
 		for (;;)
 		{
 			blackjack::Display(player, dealer);
-			blackjack::GameConditions(player, dealer, deck);
+			blackjack::GameConditions(player, dealer, deck, chipsWager);
 
 			std::cout << "\n| 1. Hit | 2. Stand | 3. Double |\n";
 			std::cin >> input;
@@ -46,17 +50,18 @@ namespace blackjack
 				break;
 
 			case 2: // Stand
-				blackjack::DealerStandPlay(player, dealer, deck);
+				blackjack::DealerStandPlay(player, dealer, deck, chipsWager);
 				break;
 
-			//case 3: // Double down
-			//	player->doubleDown();
-			//	player->addCard(deck.dealCard());
-			//	player->addChips(input * 2); // double down
-			//	break;
+			case 3: // Double down
+				player->doubleDown();
+				player->addCard(deck->dealCard());
+				blackjack::GameConditions(player, dealer, deck, chipsWager);
+				player->addChips(input); // double down
+				break;
 
-				//case 4: // Split (whenever I get to this :/)
-					//	break;
+			//case 4: // Split (whenever I get to this :/)
+				//	break;
 
 			default:
 				std::cout << "Invalid input\n";
@@ -95,7 +100,7 @@ namespace blackjack
 		}
 	}
 
-	inline void GameConditions(Player* player, Dealer* dealer, Deck* deck)
+	inline void GameConditions(Player* player, Dealer* dealer, Deck* deck, int wageredChips)
 	{
 		// Player Conditions
 		if (player->getChips() <= 0)
@@ -106,11 +111,13 @@ namespace blackjack
 		else if (player->getTotalValue() > BLACKJACK)
 		{
 			std::cout << "Busted! Dealer Wins!\n\n";
+			player->removeChips(wageredChips);
 			blackjack::ResetGame(player, dealer, deck);
 		}
 		else if (player->getTotalValue() == BLACKJACK)
 		{
 			std::cout << "Blackjack! You win!\n\n";
+			player->addChips(wageredChips);
 			blackjack::ResetGame(player, dealer, deck);
 		}
 
@@ -118,11 +125,13 @@ namespace blackjack
 		if (dealer->getTotalValue() > BLACKJACK)
 		{
 			std::cout << "Dealer busts! You win!\n\n";
+			player->addChips(wageredChips);
 			blackjack::ResetGame(player, dealer, deck);
 		}
 		else if (dealer->getTotalValue() == BLACKJACK)
 		{
 			std::cout << "Dealer has blackjack! You lose!\n\n";
+			player->removeChips(wageredChips);
 			blackjack::ResetGame(player, dealer, deck);
 		}
 		else if (dealer->getTotalValue() == player->getTotalValue())
@@ -132,7 +141,7 @@ namespace blackjack
 		}
 	}
 
-	inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck)
+	inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck, int wagerChips)
 	{
 		while (dealer->getTotalValue() < 17)
 		{
@@ -140,7 +149,7 @@ namespace blackjack
 			dealer->addCard(deck->dealCard());
 			std::cout << "\nDealer hits...\n";
 			blackjack::DisplayFullHands(player, dealer);
-			blackjack::GameConditions(player, dealer, deck);
+			blackjack::GameConditions(player, dealer, deck, wagerChips);
 		}
 	}
 
