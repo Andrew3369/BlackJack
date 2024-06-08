@@ -10,21 +10,25 @@
 namespace blackjack
 {
 	constexpr int BLACKJACK = 21;
+	constexpr int DEALER_STAND_THRESHOLD = 17;
+	constexpr bool isRunning = true;
 
 	void MainGameLoop(Player* player, Dealer* dealer, Deck* deck);
-	void StartGame(Player* player, Dealer* dealer, Deck* deck);
+	inline void StartGame(Player* player, Dealer* dealer, Deck* deck);
 	void KillGame(Player* player, Dealer* dealer, Deck* deck);
-	void GameConditions(Player* player, Dealer* dealer, Deck* deck);
+	inline void GameConditions(Player* player, Dealer* dealer, Deck* deck);
 	/*void checkPlayerConditions(Player* player);
 	void checkDealerConditions(Dealer* dealer);*/ //eventually :p
-	void Display(Player* player, Dealer* dealer);
-	void DisplayFullHands(Player* player, Dealer* dealer);
-	void ResetGame(Player* player, Dealer* dealer, Deck* deck);
-	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck);
+	inline void Display(Player* player, Dealer* dealer);
+	inline void DisplayFullHands(Player* player, Dealer* dealer);
+	inline void ResetGame(Player* player, Dealer* dealer, Deck* deck);
+	inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck);
 
 
 	void MainGameLoop(Player* player, Dealer* dealer, Deck* deck)
 	{
+		blackjack::StartGame(player, dealer, deck);
+
 		int input = 0;
 
 		for (;;)
@@ -45,11 +49,11 @@ namespace blackjack
 				blackjack::DealerStandPlay(player, dealer, deck);
 				break;
 
-				//case 3: // Double down
-				//	player->doubleDown();
-				//	player->addCard(deck.dealCard());
-				//	player->addChips(input * 2); // double down
-				//	break;
+			//case 3: // Double down
+			//	player->doubleDown();
+			//	player->addCard(deck.dealCard());
+			//	player->addChips(input * 2); // double down
+			//	break;
 
 				//case 4: // Split (whenever I get to this :/)
 					//	break;
@@ -61,7 +65,7 @@ namespace blackjack
 		}
 	}
 
-	void StartGame(Player* player, Dealer* dealer, Deck* deck)
+	inline void StartGame(Player* player, Dealer* dealer, Deck* deck)
 	{
 		// Deal the cards
 		try
@@ -77,7 +81,7 @@ namespace blackjack
 		}
 	}
 
-	void ResetGame(Player* player, Dealer* dealer, Deck* deck)
+	inline void ResetGame(Player* player, Dealer* dealer, Deck* deck)
 	{
 		try
 		{
@@ -91,8 +95,9 @@ namespace blackjack
 		}
 	}
 
-	void GameConditions(Player* player, Dealer* dealer, Deck* deck)
+	inline void GameConditions(Player* player, Dealer* dealer, Deck* deck)
 	{
+		// Player Conditions
 		if (player->getChips() <= 0)
 		{
 			std::cout << "You're out of chips! Game over!\n\n";
@@ -127,20 +132,19 @@ namespace blackjack
 		}
 	}
 
-	void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck)
+	inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck)
 	{
 		while (dealer->getTotalValue() < 17)
 		{
 			std::this_thread::sleep_for(std::chrono::seconds(1));
 			dealer->addCard(deck->dealCard());
 			std::cout << "\nDealer hits...\n";
-			//std::this_thread::sleep_for(std::chrono::seconds(1));
 			blackjack::DisplayFullHands(player, dealer);
 			blackjack::GameConditions(player, dealer, deck);
 		}
 	}
 
-	void Display(Player* player, Dealer* dealer)
+	inline void Display(Player* player, Dealer* dealer)
 	{
 		std::cout << "Dealer's Hand: ";
 		dealer->displayHand();
@@ -152,7 +156,7 @@ namespace blackjack
 		std::cout << std::endl << "Hand total: " << player->getTotalValue() << "\nPlayer's Chips: " << player->getChips() << std::endl;
 	}
 
-	void DisplayFullHands(Player* player, Dealer* dealer)
+	inline void DisplayFullHands(Player* player, Dealer* dealer)
 	{
 		std::cout << "Dealer's Hand: ";
 		dealer->displayFullHand();
