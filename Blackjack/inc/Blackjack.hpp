@@ -6,7 +6,17 @@
 #include "../inc/Player.hpp"
 #include "../inc/Dealer.hpp"
 #include "../inc/Deck.hpp"
-
+#define KNRM  "\x1B[0m"
+#define KBLK  "\x1b[30m"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\x1B[0m"
+#define BGREN "\x1b[42m"
 namespace blackjack
 {
     constexpr int BLACKJACK = 21;
@@ -211,5 +221,18 @@ namespace blackjack
         delete dealer;
         delete deck;
         exit(1);
+    }
+
+
+    void maindisplayprint(void)
+    {
+        std::cout << KRED " /$$$$$$$  /$$                     /$$          /$$$$$                     /$$      \n" RESET;
+        std::cout << KRED "| $$__  $$| $$                    | $$         |__  $$                    | $$      \n" RESET;
+        std::cout << KRED "| $$  \\ $$| $$  /$$$$$$   /$$$$$$$| $$   /$$      | $$  /$$$$$$   /$$$$$$$| $$   /$$\n" RESET;
+        std::cout << KRED "| $$$$$$$ | $$ |____  $$ /$$_____/| $$  /$$/      | $$ |____  $$ /$$_____/| $$  /$$/\n" RESET;
+        std::cout << KRED "| $$__  $$| $$  /$$$$$$$| $$      | $$$$$$/  /$$  | $$  /$$$$$$$| $$      | $$$$$$/ \n" RESET;
+        std::cout << KRED "| $$  \\ $$| $$ /$$__  $$| $$      | $$_  $$ | $$  | $$ /$$__  $$| $$      | $$_  $$ \n" RESET;
+        std::cout << KRED "| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$| $$ \\  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$\\  $$\n" RESET;
+        std::cout << KRED "|_______/ |__/ \\_______/ \\_______/|__/  \\__/ \\______/  \\_______/ \\_______/|__/  \\__/\n" RESET;
     }
 }
