@@ -27,6 +27,10 @@ namespace blackjack
 
         int chipsWager = 0;
 
+        std::cout << "========================\n";
+        std::cout << "       BLACKJACK        \n";
+        std::cout << "========================\n\n";
+
         while (true) 
         {
             int input = 0;
@@ -167,10 +171,7 @@ namespace blackjack
 
     void Display(Player* player, Dealer* dealer)
     {
-        std::cout << "========================\n";
-        std::cout << "       BLACKJACK        \n";
-        std::cout << "========================\n\n";
-
+       
         std::cout << "Dealer's Hand: \n";
         dealer->displayHand();
         std::cout << "\nHand total: " << dealer->getFirstCardValue();
