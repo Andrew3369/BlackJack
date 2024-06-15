@@ -39,7 +39,11 @@ namespace blackjack
 
             std::cout << "\n| 1. Hit | 2. Stand | 3. Double |\n";
             std::cin >> input;
-
+            if (std::cin.fail())
+            {
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+            }
             switch (input) 
             {
             case 1: // Hit
