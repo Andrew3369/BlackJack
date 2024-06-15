@@ -63,7 +63,7 @@ Card Deck::dealCard()
     }
     else
     {
-        // idk i just threw this here, not sure how to handle an empty deck
+        // not sure how to handle an empty deck
         return Card(Suit::Spades, Rank::Seven);
     }
 }

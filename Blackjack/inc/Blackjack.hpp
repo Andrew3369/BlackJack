@@ -16,7 +16,7 @@ namespace blackjack
     inline void StartGame(Player* player, Dealer* dealer, Deck* deck);
     void KillGame(Player* player, Dealer* dealer, Deck* deck);
     inline void GameConditions(Player* player, Dealer* dealer, Deck* deck, int wageredChips, bool dealerFinished = false);
-    inline void Display(Player* player, Dealer* dealer);
+    void Display(Player* player, Dealer* dealer);
     inline void DisplayFullHands(Player* player, Dealer* dealer);
     inline void ResetGame(Player* player, Dealer* dealer, Deck* deck);
     inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck, int wageredChips);
@@ -46,12 +46,14 @@ namespace blackjack
                 DealerStandPlay(player, dealer, deck, chipsWager);
                 break;
 
-            //case 3: // Double down
-            //    player->doubleDown();
-            //    player->addCard(deck->dealCard());
-            //    GameConditions(player, dealer, deck, chipsWager);
-            //    player->addChips(input); // double down
-            //    break;
+			//case 3: // Double down
+			//	if (player->getChips() >= chipsWager)
+			//	{
+			//		player->addCard(deck->dealCard());
+			//		chipsWager *= 2;
+			//		player->removeChips(chipsWager);
+			//		DealerStandPlay(player, dealer, deck, chipsWager);
+   //             }
 
             //case 4:
 				// split :\
@@ -117,10 +119,10 @@ namespace blackjack
             ResetGame(player, dealer, deck);
             return;
         }
-        else if (player->getTotalValue() > dealer->getTotalValue())
+        /*else if (player->getTotalValue() > dealer->getTotalValue())
         {
             std::cout << "Player has " << player->getTotalValue() << ", Player Wins!\n\n";
-        }
+        }*/
 
         // Dealer Conditions
         if (dealerFinished)
@@ -163,7 +165,7 @@ namespace blackjack
         GameConditions(player, dealer, deck, wagerChips, true);
     }
 
-    inline void Display(Player* player, Dealer* dealer)
+    void Display(Player* player, Dealer* dealer)
     {
         std::cout << "Dealer's Hand: ";
         dealer->displayHand();
