@@ -60,7 +60,7 @@ namespace blackjack
 				//break;
 
             default:
-                std::cout << "Invalid input\n";
+                std::cout << "Invalid input\n\n";
                 break;
             }
         }
@@ -78,7 +78,7 @@ namespace blackjack
 
         catch (const std::exception& error) 
         {
-            std::cerr << error.what() << " Inside of blackjack::StartGame()" << std::endl;
+            std::cerr << error.what() << " Inside of [blackjack::StartGame()]" << std::endl;
         }
     }
 
@@ -93,7 +93,7 @@ namespace blackjack
 
         catch (const std::exception& error) 
         {
-            std::cerr << error.what() << " Inside of blackjack::ResetGame()" << std::endl;
+            std::cerr << error.what() << " Inside of [blackjack::ResetGame()]" << std::endl;
         }
     }
 
@@ -102,19 +102,19 @@ namespace blackjack
         // Player Conditions
         if (player->getChips() <= 0) 
         {
-            std::cout << "You're out of chips! Game over!\n\n";
+            std::cout << "You're out of chips! Game over!\n\n\n\n";
             KillGame(player, dealer, deck);
         }
         else if (player->getTotalValue() > BLACKJACK) 
         {
-            std::cout << "Busted! Dealer Wins!\n\n";
+            std::cout << "Busted! Dealer Wins!\n\n\n\n";
             player->removeChips(wageredChips);
             ResetGame(player, dealer, deck);
             return;
         }
         else if (player->getTotalValue() == BLACKJACK) 
         {
-            std::cout << "Blackjack! You win!\n\n";
+            std::cout << "Blackjack! You win!\n\n\n\n";
             player->addChips(wageredChips);
             ResetGame(player, dealer, deck);
             return;
@@ -129,24 +129,24 @@ namespace blackjack
         {
             if (dealer->getTotalValue() > BLACKJACK)
             {
-                std::cout << "Dealer busts! You win!\n\n";
+                std::cout << "Dealer busts! You win!\n\n\n\n";
                 player->addChips(wageredChips);
                 ResetGame(player, dealer, deck);
             }
             else if (dealer->getTotalValue() == BLACKJACK)
             {
-                std::cout << "Dealer has blackjack! You lose!\n\n";
+                std::cout << "Dealer has blackjack! You lose!\n\n\n\n";
                 player->removeChips(wageredChips);
                 ResetGame(player, dealer, deck);
             }
             else if (dealer->getTotalValue() == player->getTotalValue())
             {
-                std::cout << "Push! Both Player and Dealer have the same amount!\n\n";
+                std::cout << "Push! Both Player and Dealer have the same amount!\n\n\n\n";
                 ResetGame(player, dealer, deck);
             }
             else if (dealer->getTotalValue() > player->getTotalValue())
             {
-                std::cout << "Dealer has " << dealer->getTotalValue() << ", Dealer Wins!\n\n";
+                std::cout << "Dealer has " << dealer->getTotalValue() << ", Dealer Wins!\n\n\n\n";
                 player->removeChips(wageredChips);
                 ResetGame(player, dealer, deck);
             }
@@ -167,26 +167,38 @@ namespace blackjack
 
     void Display(Player* player, Dealer* dealer)
     {
-        std::cout << "Dealer's Hand: ";
-        dealer->displayHand();
-        std::cout << std::endl << "Hand total: " << dealer->getFirstCardValue();
-        std::cout << std::endl << std::endl;
+        std::cout << "========================\n";
+        std::cout << "       BLACKJACK        \n";
+        std::cout << "========================\n\n";
 
-        std::cout << "Player's Hand: ";
+        std::cout << "Dealer's Hand: \n";
+        dealer->displayHand();
+        std::cout << "\nHand total: " << dealer->getFirstCardValue();
+        std::cout << "\n------------------------\n";
+
+        std::cout << "Player's Hand: \n";
         player->displayHand();
-        std::cout << std::endl << "Hand total: " << player->getTotalValue() << "\nPlayer's Chips: " << player->getChips() << std::endl;
+        std::cout << "\nHand total: " << player->getTotalValue();
+        std::cout << "\nPlayer's Chips: " << player->getChips();
+        std::cout << "\n========================\n";
     }
 
     inline void DisplayFullHands(Player* player, Dealer* dealer)
     {
-        std::cout << "Dealer's Hand: ";
-        dealer->displayFullHand();
-        std::cout << std::endl << "Hand total: " << dealer->getTotalValue();
-        std::cout << std::endl << std::endl;
+        std::cout << "========================\n";
+        std::cout << "       BLACKJACK        \n";
+        std::cout << "========================\n\n";
 
-        std::cout << "Player's Hand: ";
+        std::cout << "Dealer's Hand: \n";
+        dealer->displayFullHand();
+        std::cout << "\nHand total: " << dealer->getTotalValue();
+        std::cout << "\n------------------------\n";
+
+        std::cout << "Player's Hand: \n";
         player->displayHand();
-        std::cout << std::endl << "Hand total: " << player->getTotalValue() << "\nPlayer's Chips: " << player->getChips() << std::endl;
+        std::cout << "\nHand total: " << player->getTotalValue();
+        std::cout << "\nPlayer's Chips: " << player->getChips();
+        std::cout << "\n========================\n";
     }
 
     void KillGame(Player* player, Dealer* dealer, Deck* deck) 

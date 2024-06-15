@@ -1,12 +1,10 @@
 ﻿#include "../inc/Card.hpp"
-using namespace std;
 
 void Card::display() const
 {
-	string suitStr;
-	string rankStr;
+	std::string suitStr;
+	std::string rankStr;
 
-	// my eyes hurt even more now
 	switch (suit)
 	{
 		case Suit::Hearts:
