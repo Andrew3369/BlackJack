@@ -38,12 +38,14 @@ namespace blackjack
             GameConditions(player, dealer, deck, chipsWager);
 
             std::cout << "\n| 1. Hit | 2. Stand | 3. Double |\n";
+
             std::cin >> input;
             if (std::cin.fail())
             {
                 std::cin.clear();
                 std::cin.ignore(1000, '\n');
             }
+
             switch (input) 
             {
             case 1: // Hit
@@ -140,23 +142,27 @@ namespace blackjack
                 std::cout << "Dealer busts! You win!\n\n\n\n";
                 player->addChips(wageredChips);
                 ResetGame(player, dealer, deck);
+                return;
             }
             else if (dealer->getTotalValue() == BLACKJACK)
             {
                 std::cout << "Dealer has blackjack! You lose!\n\n\n\n";
                 player->removeChips(wageredChips);
                 ResetGame(player, dealer, deck);
+                return;
             }
             else if (dealer->getTotalValue() == player->getTotalValue())
             {
                 std::cout << "Push! Both Player and Dealer have the same amount!\n\n\n\n";
                 ResetGame(player, dealer, deck);
+                return;
             }
             else if (dealer->getTotalValue() > player->getTotalValue())
             {
                 std::cout << "Dealer has " << dealer->getTotalValue() << ", Dealer Wins!\n\n\n\n";
                 player->removeChips(wageredChips);
                 ResetGame(player, dealer, deck);
+                return;
             }
         }
     }
@@ -190,10 +196,6 @@ namespace blackjack
 
     inline void DisplayFullHands(Player* player, Dealer* dealer)
     {
-        std::cout << "========================\n";
-        std::cout << "       BLACKJACK        \n";
-        std::cout << "========================\n\n";
-
         std::cout << "Dealer's Hand: \n";
         dealer->displayFullHand();
         std::cout << "\nHand total: " << dealer->getTotalValue();
