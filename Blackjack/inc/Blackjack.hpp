@@ -9,18 +9,6 @@
 
 struct ColourSettings
 {
-    /*#define KRED  "\x1B[31m"
-    #define RESET "\x1B[0m"
-    #define KNRM  "\x1B[0m";
-    #define KBLK  "\x1b[30m"
-    #define KGRN  "\x1B[32m"
-    #define KYEL  "\x1B[33m"
-    #define KBLU  "\x1B[34m"
-    #define KMAG  "\x1B[35m"
-    #define KCYN  "\x1B[36m"
-    #define KWHT  "\x1B[37m"
-    #define BGREN "\x1b[42m"*/
-
 	const char* KRED = "\x1B[31m";
 	const char* RESET = "\x1B[0m";
 	const char* KNRM = "\x1B[0m";
@@ -30,16 +18,15 @@ struct ColourSettings
 	const char* KBLU = "\x1B[34m";
 	const char* KMAG = "\x1B[35m";
 	const char* KCYN = "\x1B[36m";
-    const char* KWHT  "\x1B[37m"
-    const char* BGREN "\x1b[42m"
-    
+    const char* KWHT = "\x1B[37m";
+    const char* BGREN = "\x1b[42m";
 };
-
 
 namespace blackjack
 {
-    constexpr int BLACKJACK = 21;
-    constexpr int DEALER_STAND_THRESHOLD = 17;
+    constexpr int g_BLACKJACK = 21;
+    constexpr int g_DEALER_STAND_THRESHOLD = 17;
+    ColourSettings g_ColourSettings;
 
     const void MainDisplayPrint(void);
     void MainGameLoop(Player* player, Dealer* dealer, Deck* deck);
@@ -141,14 +128,14 @@ namespace blackjack
             std::cout << "You're out of chips! Game over!\n\n\n\n";
             KillGame(player, dealer, deck);
         }
-        else if (player->getTotalValue() > BLACKJACK) 
+        else if (player->getTotalValue() > g_BLACKJACK)
         {
             std::cout << "Busted! Dealer Wins!\n\n\n\n";
             player->removeChips(wageredChips);
             ResetGame(player, dealer, deck);
             return;
         }
-        else if (player->getTotalValue() == BLACKJACK) 
+        else if (player->getTotalValue() == g_BLACKJACK)
         {
             std::cout << "Blackjack! You win!\n\n\n\n";
             player->addChips(wageredChips);
@@ -163,7 +150,7 @@ namespace blackjack
         // Dealer Conditions
         if (dealerFinished)
         {
-            if (dealer->getTotalValue() > BLACKJACK)
+            if (dealer->getTotalValue() > g_BLACKJACK)
             {
                 std::cout << "Dealer has " << dealer->getTotalValue();
                 std::cout << "Dealer busts! You win!\n\n\n\n";
@@ -171,7 +158,7 @@ namespace blackjack
                 ResetGame(player, dealer, deck);
                 return;
             }
-            else if (dealer->getTotalValue() == BLACKJACK)
+            else if (dealer->getTotalValue() == g_BLACKJACK)
             {
                 std::cout << "Dealer has blackjack! You lose!\n\n\n\n";
                 player->removeChips(wageredChips);
@@ -196,7 +183,7 @@ namespace blackjack
 
     inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck, int wagerChips)
     {
-        while (dealer->getTotalValue() < DEALER_STAND_THRESHOLD) 
+        while (dealer->getTotalValue() < g_DEALER_STAND_THRESHOLD) 
         {
             std::this_thread::sleep_for(std::chrono::seconds(1));
             dealer->addCard(deck->dealCard());
@@ -246,13 +233,13 @@ namespace blackjack
 
     const void MainDisplayPrint(void)
     {
-        std::cout << KRED " /$$$$$$$  /$$                     /$$          /$$$$$                     /$$      \n" RESET;
-        std::cout << KRED "| $$__  $$| $$                    | $$         |__  $$                    | $$      \n" RESET;
-        std::cout << KRED "| $$  \\ $$| $$  /$$$$$$   /$$$$$$$| $$   /$$      | $$  /$$$$$$   /$$$$$$$| $$   /$$\n" RESET;
-        std::cout << KRED "| $$$$$$$ | $$ |____  $$ /$$_____/| $$  /$$/      | $$ |____  $$ /$$_____/| $$  /$$/\n" RESET;
-        std::cout << KRED "| $$__  $$| $$  /$$$$$$$| $$      | $$$$$$/  /$$  | $$  /$$$$$$$| $$      | $$$$$$/ \n" RESET;
-        std::cout << KRED "| $$  \\ $$| $$ /$$__  $$| $$      | $$_  $$ | $$  | $$ /$$__  $$| $$      | $$_  $$ \n" RESET;
-        std::cout << KRED "| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$| $$ \\  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$\\  $$\n" RESET;
-        std::cout << KRED "|_______/ |__/ \\_______/ \\_______/|__/  \\__/ \\______/  \\_______/ \\_______/|__/  \\__/\n" RESET;
+        std::cout << g_ColourSettings.KRED << " /$$$$$$$  /$$                     /$$          /$$$$$                     /$$      \n" << g_ColourSettings.RESET;
+        std::cout << g_ColourSettings.KRED << "| $$__  $$| $$                    | $$         |__  $$                    | $$      \n" << g_ColourSettings.RESET;
+        std::cout << g_ColourSettings.KRED <<"| $$  \\ $$| $$  /$$$$$$   /$$$$$$$| $$   /$$      | $$  /$$$$$$   /$$$$$$$| $$   /$$\n" << g_ColourSettings.RESET;
+        std::cout << g_ColourSettings.KRED << "| $$$$$$$ | $$ |____  $$ /$$_____/| $$  /$$/      | $$ |____  $$ /$$_____/| $$  /$$/\n" << g_ColourSettings.RESET;
+        std::cout << g_ColourSettings.KRED << "| $$__  $$| $$  /$$$$$$$| $$      | $$$$$$/  /$$  | $$  /$$$$$$$| $$      | $$$$$$/ \n" << g_ColourSettings.RESET;
+        std::cout << g_ColourSettings.KRED << "| $$  \\ $$| $$ /$$__  $$| $$      | $$_  $$ | $$  | $$ /$$__  $$| $$      | $$_  $$ \n" << g_ColourSettings.RESET;
+        std::cout << g_ColourSettings.KRED << "| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$| $$ \\  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$\\  $$\n" << g_ColourSettings.RESET;
+        std::cout << g_ColourSettings.KRED << "|_______/ |__/ \\_______/ \\_______/|__/  \\__/ \\______/  \\_______/ \\_______/|__/  \\__/\n" << g_ColourSettings.RESET;
     }
 }
