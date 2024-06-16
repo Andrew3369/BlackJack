@@ -6,22 +6,42 @@
 #include "../inc/Player.hpp"
 #include "../inc/Dealer.hpp"
 #include "../inc/Deck.hpp"
-#define KNRM  "\x1B[0m"
-#define KBLK  "\x1b[30m"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
-#define RESET "\x1B[0m"
-#define BGREN "\x1b[42m"
+
+struct ColourSettings
+{
+    /*#define KRED  "\x1B[31m"
+    #define RESET "\x1B[0m"
+    #define KNRM  "\x1B[0m";
+    #define KBLK  "\x1b[30m"
+    #define KGRN  "\x1B[32m"
+    #define KYEL  "\x1B[33m"
+    #define KBLU  "\x1B[34m"
+    #define KMAG  "\x1B[35m"
+    #define KCYN  "\x1B[36m"
+    #define KWHT  "\x1B[37m"
+    #define BGREN "\x1b[42m"*/
+
+	const char* KRED = "\x1B[31m";
+	const char* RESET = "\x1B[0m";
+	const char* KNRM = "\x1B[0m";
+	const char* KBLK = "\x1b[30m";
+	const char* KGRN = "\x1B[32m";
+	const char* KYEL = "\x1B[33m";
+	const char* KBLU = "\x1B[34m";
+	const char* KMAG = "\x1B[35m";
+	const char* KCYN = "\x1B[36m";
+    const char* KWHT  "\x1B[37m"
+    const char* BGREN "\x1b[42m"
+    
+};
+
+
 namespace blackjack
 {
     constexpr int BLACKJACK = 21;
     constexpr int DEALER_STAND_THRESHOLD = 17;
 
+    const void MainDisplayPrint(void);
     void MainGameLoop(Player* player, Dealer* dealer, Deck* deck);
     inline void StartGame(Player* player, Dealer* dealer, Deck* deck);
     void KillGame(Player* player, Dealer* dealer, Deck* deck);
@@ -36,10 +56,6 @@ namespace blackjack
         StartGame(player, dealer, deck);
 
         int chipsWager = 0;
-
-        std::cout << "========================\n";
-        std::cout << "       BLACKJACK        \n";
-        std::cout << "========================\n\n";
 
         while (true) 
         {
@@ -149,6 +165,7 @@ namespace blackjack
         {
             if (dealer->getTotalValue() > BLACKJACK)
             {
+                std::cout << "Dealer has " << dealer->getTotalValue();
                 std::cout << "Dealer busts! You win!\n\n\n\n";
                 player->addChips(wageredChips);
                 ResetGame(player, dealer, deck);
@@ -227,7 +244,7 @@ namespace blackjack
     }
 
 
-    void maindisplayprint(void)
+    const void MainDisplayPrint(void)
     {
         std::cout << KRED " /$$$$$$$  /$$                     /$$          /$$$$$                     /$$      \n" RESET;
         std::cout << KRED "| $$__  $$| $$                    | $$         |__  $$                    | $$      \n" RESET;

@@ -13,8 +13,7 @@ int main(int argc, char* argv[])
 	auto dealer = std::make_unique<Dealer>();
 	auto deck = std::make_unique<Deck>();*/
 
-	blackjack::maindisplayprint();
-	//blackjack::StartGame(player, dealer, deck);
+	blackjack::MainDisplayPrint();
 	blackjack::MainGameLoop(player, dealer, deck);
 	blackjack::KillGame(player, dealer, deck);
 
