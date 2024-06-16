@@ -207,14 +207,13 @@ namespace blackjack
         std::cout << "\n========================\n";
     }
 
-    void KillGame(Player* player, Dealer* dealer, Deck* deck) 
+    void KillGame(Player* player, Dealer* dealer, Deck* deck)
     {
         delete player;
         delete dealer;
         delete deck;
         exit(1);
     }
-
 
     const void MainDisplayPrint(void)
     {
@@ -226,6 +225,5 @@ namespace blackjack
         std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$  \\ $$| $$ /$$__  $$| $$      | $$_  $$ | $$  | $$ /$$__  $$| $$      | $$_  $$ \n");
         std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$| $$ \\  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$\\  $$\n");
         std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("|_______/ |__/ \\_______/ \\_______/|__/  \\__/ \\______/  \\_______/ \\_______/|__/  \\__/\n");
-
     }
 }

@@ -25,6 +25,10 @@ private:
 	Suit suit;
 	Rank rank;
 
+private:
+	std::string getSuitSymbol(void) const;
+	std::string getRankSymbol(void) const;
+
 public:
 	Card(Suit s, Rank r) : suit(s), rank(r) {}
 	void display() const;
