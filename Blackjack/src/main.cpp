@@ -3,6 +3,7 @@
 //HELLO ANDREW AND CARTER
 int main(int argc, char* argv[])
 {
+	
 	// Initializing the game
 	Player* player = new Player(10000);
 	Dealer* dealer = new Dealer();

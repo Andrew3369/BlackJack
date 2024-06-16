@@ -3,20 +3,21 @@
 
 void Card::display() const
 {
-	std::string suitStr = getSuitSymbol();
-	std::string rankStr = getRankSymbol();
+	const wchar_t* suitStr = getSuitSymbol();
+	const wchar_t * rankStr = getRankSymbol();
 
-	std::cout << "┌─────────┐\n";
-	std::cout << "│ " << rankStr;
-	std::cout << "       │\n";
-	std::cout << "│         │\n";
-	std::cout << "│    " << suitStr << "    │\n";
-	std::cout << "│         │\n";
-	std::cout << "│       " << rankStr;
-	std::cout << " │\n";
-	std::cout << "└─────────┘\n";
-	std::cout << std::endl;
-
+	_setmode(_fileno(stdout), _O_U16TEXT);
+	std::wcout << L"┌─────────┐\n";
+	std::wcout << L"\x2502 " << rankStr;
+	std::wcout << L"       \x2502\n";
+	std::wcout << L"│         │\n";
+	std::wcout << L"│    " << suitStr << L"    │\n";
+	std::wcout << L"│         │\n";
+	std::wcout << L"│       " << rankStr;
+	std::wcout << L" │\n";
+	std::wcout << L"└─────────┘\n";
+	std::wcout << std::endl;
+	_setmode(_fileno(stdout), _O_TEXT);
 	/*switch (suit)
 	{
 		case Suit::Hearts:
@@ -104,47 +105,60 @@ int Card::getValue() const
 	}
 }
 
-std::string Card::getSuitSymbol() const
+const wchar_t* Card::getSuitSymbol() const
 {
 	switch (suit)
 	{
-		case Suit::Hearts: return "♥";
-		case Suit::Diamonds: return "♦";
-		case Suit::Clubs: return "♣";
-		case Suit::Spades: return "♠";
-		default: return "Invalid suit";
+		case Suit::Hearts: return L"\x2665";
+		case Suit::Diamonds: return L"\x2666";
+		case Suit::Clubs: return L"\x2663";
+		case Suit::Spades: return L"\x2660";
 	}
 }
 
-std::string Card::getRankSymbol() const
+const wchar_t * Card::getRankSymbol() const
 {
+	const wchar_t * returnsymbol;
 	switch (rank)
 	{
 		case Rank::Ace:
-			return "A";
+			returnsymbol = L"\x0041";
+			return returnsymbol;
 		case Rank::Two:
-			return "2";
+			returnsymbol = L"\x0032";
+			return returnsymbol;
 		case Rank::Three:
-			return "3";
+			returnsymbol = L"\x0033";
+			return returnsymbol;
 		case Rank::Four:
-			return "4";
+			returnsymbol = L"\x0034";
+			return returnsymbol;
 		case Rank::Five:
-			return "5";
+			returnsymbol = L"\x0035";
+			return returnsymbol;
 		case Rank::Six:
-			return "6";
+			returnsymbol = L"\x0036";
+			return returnsymbol;
 		case Rank::Seven:
-			return "7";
+			returnsymbol = L"\x0037";
+			return returnsymbol;
 		case Rank::Eight:
-			return "8";
+			returnsymbol = L"\x0038";
+			return returnsymbol;
 		case Rank::Nine:
-			return "9";
+			returnsymbol = L"\x0039";
+			return returnsymbol;
 		case Rank::Ten:
-			return "10";
+			returnsymbol = L"\x0031\x0030";
+			return returnsymbol;
 		case Rank::Jack:
-			return "J";
+			returnsymbol = L"\x004A";
+			return returnsymbol;
 		case Rank::Queen:
-			return "Q";
+			returnsymbol = L"\x0051";
+			return returnsymbol;
 		case Rank::King:
-			return "K";
+			returnsymbol = L"\x004B";
+			return returnsymbol;
 	}
 }
