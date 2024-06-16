@@ -6,27 +6,12 @@
 #include "../inc/Player.hpp"
 #include "../inc/Dealer.hpp"
 #include "../inc/Deck.hpp"
-
-struct ColourSettings
-{
-	const char* KRED = "\x1B[31m";
-	const char* RESET = "\x1B[0m";
-	const char* KNRM = "\x1B[0m";
-	const char* KBLK = "\x1b[30m";
-	const char* KGRN = "\x1B[32m";
-	const char* KYEL = "\x1B[33m";
-	const char* KBLU = "\x1B[34m";
-	const char* KMAG = "\x1B[35m";
-	const char* KCYN = "\x1B[36m";
-    const char* KWHT = "\x1B[37m";
-    const char* BGREN = "\x1b[42m";
-};
+#include "../inc/colors.hpp"
 
 namespace blackjack
 {
     constexpr int g_BLACKJACK = 21;
     constexpr int g_DEALER_STAND_THRESHOLD = 17;
-    ColourSettings g_ColourSettings;
 
     const void MainDisplayPrint(void);
     void MainGameLoop(Player* player, Dealer* dealer, Deck* deck);
@@ -233,13 +218,14 @@ namespace blackjack
 
     const void MainDisplayPrint(void)
     {
-        std::cout << g_ColourSettings.KRED << " /$$$$$$$  /$$                     /$$          /$$$$$                     /$$      \n" << g_ColourSettings.RESET;
-        std::cout << g_ColourSettings.KRED << "| $$__  $$| $$                    | $$         |__  $$                    | $$      \n" << g_ColourSettings.RESET;
-        std::cout << g_ColourSettings.KRED <<"| $$  \\ $$| $$  /$$$$$$   /$$$$$$$| $$   /$$      | $$  /$$$$$$   /$$$$$$$| $$   /$$\n" << g_ColourSettings.RESET;
-        std::cout << g_ColourSettings.KRED << "| $$$$$$$ | $$ |____  $$ /$$_____/| $$  /$$/      | $$ |____  $$ /$$_____/| $$  /$$/\n" << g_ColourSettings.RESET;
-        std::cout << g_ColourSettings.KRED << "| $$__  $$| $$  /$$$$$$$| $$      | $$$$$$/  /$$  | $$  /$$$$$$$| $$      | $$$$$$/ \n" << g_ColourSettings.RESET;
-        std::cout << g_ColourSettings.KRED << "| $$  \\ $$| $$ /$$__  $$| $$      | $$_  $$ | $$  | $$ /$$__  $$| $$      | $$_  $$ \n" << g_ColourSettings.RESET;
-        std::cout << g_ColourSettings.KRED << "| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$| $$ \\  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$\\  $$\n" << g_ColourSettings.RESET;
-        std::cout << g_ColourSettings.KRED << "|_______/ |__/ \\_______/ \\_______/|__/  \\__/ \\______/  \\_______/ \\_______/|__/  \\__/\n" << g_ColourSettings.RESET;
+        std::cout << color::printwithcolor <color::ansi_color_codes::bright_red>(" /$$$$$$$  /$$                     /$$          /$$$$$                     /$$      \n");
+        std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$__  $$| $$                    | $$         |__  $$                    | $$      \n");
+        std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$  \\ $$| $$  /$$$$$$   /$$$$$$$| $$   /$$      | $$  /$$$$$$   /$$$$$$$| $$   /$$\n");
+        std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$$$$$$ | $$ |____  $$ /$$_____/| $$  /$$/      | $$ |____  $$ /$$_____/| $$  /$$/\n");
+        std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$__  $$| $$  /$$$$$$$| $$      | $$$$$$/  /$$  | $$  /$$$$$$$| $$      | $$$$$$/ \n");
+        std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$  \\ $$| $$ /$$__  $$| $$      | $$_  $$ | $$  | $$ /$$__  $$| $$      | $$_  $$ \n");
+        std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$| $$ \\  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$\\  $$\n");
+        std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("|_______/ |__/ \\_______/ \\_______/|__/  \\__/ \\______/  \\_______/ \\_______/|__/  \\__/\n");
+
     }
 }

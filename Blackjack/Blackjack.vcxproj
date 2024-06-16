@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Card.hpp" />
+    <ClInclude Include="inc\colors.hpp" />
     <ClInclude Include="inc\Dealer.hpp" />
     <ClInclude Include="inc\Deck.hpp" />
     <ClInclude Include="inc\Blackjack.hpp" />
