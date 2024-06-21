@@ -1,5 +1,7 @@
 #pragma once
 #include "../inc/Player.hpp"
+#include <io.h>
+#include <fcntl.h>"
 
 class Dealer
 {
@@ -12,6 +14,7 @@ public:
 
 	void displayHand();
 	void displayFullHand();
+	void displayBackCard() const;
 	void addCard(Card card);
 	int getTotalValue() const;
 	int getFirstCardValue() const;

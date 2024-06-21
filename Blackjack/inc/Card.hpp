@@ -3,6 +3,7 @@
 #include <string>
 #include <io.h>
 #include <fcntl.h>
+
 enum class Suit
 {
 	Hearts,
@@ -28,7 +29,7 @@ private:
 
 private:
 	const wchar_t* getSuitSymbol(void) const;
-	const wchar_t * getRankSymbol(void) const;
+	const wchar_t* getRankSymbol(void) const;
 
 public:
 	Card(Suit s, Rank r) : suit(s), rank(r) {}

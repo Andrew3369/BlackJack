@@ -1,4 +1,4 @@
-#include "../inc/Dealer.hpp"
+﻿#include "../inc/Dealer.hpp"
 
 Dealer::Dealer() {}
 
@@ -10,7 +10,8 @@ void Dealer::displayHand()
 	if (!hand.empty())
 	{
 		hand[0].display();
-		std::cout << " [Hidden Card]";
+		//std::cout << " [Hidden Card]";
+		displayBackCard();
 	}
 	else
 	{
@@ -25,6 +26,22 @@ void Dealer::displayFullHand()
 	{
 		card.display();
 	}
+}
+
+void Dealer::displayBackCard() const
+{
+	_setmode(_fileno(stdout), _O_U16TEXT);
+	std::wcout << L"┌─────────┐\n";
+	std::wcout << L"│	  │\n";
+	std::wcout << L"│	  │\n";
+	std::wcout << L"│	  │\n";
+	std::wcout << L"|	  │\n";
+	std::wcout << L"│	  │\n";
+	std::wcout << L"│	  │\n";
+	std::wcout << L"│	  │\n";
+	std::wcout << L"└─────────┘\n";
+	std::wcout << std::endl;
+	_setmode(_fileno(stdout), _O_TEXT);
 }
 
 void Dealer::addCard(Card card)
