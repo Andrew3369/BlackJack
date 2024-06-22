@@ -1,7 +1,5 @@
 #pragma once
 #include "../inc/Player.hpp"
-#include <io.h>
-#include <fcntl.h>"
 
 class Dealer
 {

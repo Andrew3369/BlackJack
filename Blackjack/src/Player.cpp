@@ -34,12 +34,12 @@ int Player::getTotalValue() const
 
 void Player::doubleDown()
 {
-	doubleDowned = true; // player has doubled down
+	doubleDowned = true;
 }
 
 bool Player::getIsDoubleDowned() const
 {
-	return doubleDowned; // return if player has doubled down
+	return doubleDowned;
 }
 
 void Player::removeCards()

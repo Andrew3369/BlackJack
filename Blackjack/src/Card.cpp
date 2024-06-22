@@ -1,5 +1,6 @@
 ﻿#include "../inc/Card.hpp"
 
+#pragma warning (disable : 6031) // removes the warning from lines 10 and 21
 
 void Card::display() const
 {
@@ -39,6 +40,7 @@ int Card::getValue() const
 		case Rank::King: return 10;
 		case Rank::Ace: return 11; // not sure how to handle if the Ace is either 1 or 11
 	}
+	return 0;
 }
 
 const wchar_t* Card::getSuitSymbol() const
@@ -50,6 +52,7 @@ const wchar_t* Card::getSuitSymbol() const
 		case Suit::Clubs: return L"\x2663";
 		case Suit::Spades: return L"\x2660";
 	}
+	return L"";
 }
 
 const wchar_t* Card::getRankSymbol() const
@@ -70,4 +73,5 @@ const wchar_t* Card::getRankSymbol() const
 		case Rank::Queen: return L"\x0051";
 		case Rank::King: return L"\x004B";
 	}
+	return L"";
 }

@@ -22,16 +22,16 @@ namespace blackjack
     inline void DisplayFullHands(Player* player, Dealer* dealer);
     inline void ResetGame(Player* player, Dealer* dealer, Deck* deck);
     inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck, int wageredChips);
+	inline void PlayerDoubleDown(Player* player, Dealer* dealer, Deck* deck, int wageredChips);
 
     void MainGameLoop(Player* player, Dealer* dealer, Deck* deck) 
     {
         StartGame(player, dealer, deck);
 
-        int chipsWager = 0;
-
         while (true) 
         {
-            int input = 0;
+            int input, chipsWager = 0;
+
             Display(player, dealer);
             GameConditions(player, dealer, deck, chipsWager);
 
@@ -54,14 +54,9 @@ namespace blackjack
                 DealerStandPlay(player, dealer, deck, chipsWager);
                 break;
 
-			//case 3: // Double down
-			//	if (player->getChips() >= chipsWager)
-			//	{
-			//		player->addCard(deck->dealCard());
-			//		chipsWager *= 2;
-			//		player->removeChips(chipsWager);
-			//		DealerStandPlay(player, dealer, deck, chipsWager);
-   //             }
+			case 3: // Double down
+                PlayerDoubleDown(player, dealer, deck, chipsWager);
+                break;
 
             //case 4:
 				// split :\
@@ -162,7 +157,7 @@ namespace blackjack
         }
     }
 
-    inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck, int wagerChips)
+    inline void DealerStandPlay(Player* player, Dealer* dealer, Deck* deck, int wageredChips)
     {
         while (dealer->getTotalValue() < g_DEALER_STAND_THRESHOLD) 
         {
@@ -171,12 +166,27 @@ namespace blackjack
             std::cout << "\nDealer hits...\n";
             DisplayFullHands(player, dealer);
         }
-        GameConditions(player, dealer, deck, wagerChips, true);
+        GameConditions(player, dealer, deck, wageredChips, true);
+    }
+
+    void PlayerDoubleDown(Player* player, Dealer* dealer, Deck* deck,  int chipsWager)
+    {
+		if (player->getChips() < chipsWager)
+		{
+			std::cout << "You don't have enough chips to double down!\n";
+			return;
+		}
+		else
+		{
+			chipsWager *= 2;
+			player->addCard(deck->dealCard());
+			DealerStandPlay(player, dealer, deck, chipsWager);
+            GameConditions(player, dealer, deck, chipsWager, true);
+		}
     }
 
     void Display(Player* player, Dealer* dealer)
     {
-       
         std::cout << "Dealer's Hand: \n"; dealer->displayHand();
         std::cout << "\nHand total: " << dealer->getFirstCardValue();
         std::cout << "\n------------------------\n";

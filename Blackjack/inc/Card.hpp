@@ -4,6 +4,7 @@
 #include <io.h>
 #include <fcntl.h>
 
+
 enum class Suit
 {
 	Hearts,
