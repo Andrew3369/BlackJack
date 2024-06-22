@@ -127,12 +127,8 @@ namespace blackjack
             ResetGame(player, dealer, deck);
             return;
         }
-        /*else if (player->getTotalValue() > dealer->getTotalValue())
-        {
-            std::cout << "Player has " << player->getTotalValue() << ", Player Wins!\n\n";
-        }*/
 
-        // Dealer Conditions
+        // Dealer Conditions if it was set to true on stand
         if (dealerFinished)
         {
             if (dealer->getTotalValue() > g_BLACKJACK)
@@ -181,13 +177,10 @@ namespace blackjack
     void Display(Player* player, Dealer* dealer)
     {
        
-        std::cout << "Dealer's Hand: \n";
-        dealer->displayHand();
+        std::cout << "Dealer's Hand: \n"; dealer->displayHand();
         std::cout << "\nHand total: " << dealer->getFirstCardValue();
         std::cout << "\n------------------------\n";
-
-        std::cout << "Player's Hand: \n";
-        player->displayHand();
+        std::cout << "Player's Hand: \n"; player->displayHand();
         std::cout << "\nHand total: " << player->getTotalValue();
         std::cout << "\nPlayer's Chips: " << player->getChips();
         std::cout << "\n========================\n";
@@ -195,26 +188,23 @@ namespace blackjack
 
     inline void DisplayFullHands(Player* player, Dealer* dealer)
     {
-        std::cout << "Dealer's Hand: \n";
-        dealer->displayFullHand();
+        std::cout << "Dealer's Hand: \n"; dealer->displayFullHand();
         std::cout << "\nHand total: " << dealer->getTotalValue();
         std::cout << "\n------------------------\n";
 
-        std::cout << "Player's Hand: \n";
-        player->displayHand();
+        std::cout << "Player's Hand: \n"; player->displayHand();
         std::cout << "\nHand total: " << player->getTotalValue();
         std::cout << "\nPlayer's Chips: " << player->getChips();
         std::cout << "\n========================\n";
     }
 
-    void KillGame(Player* player, Dealer* dealer, Deck* deck) 
+    void KillGame(Player* player, Dealer* dealer, Deck* deck)
     {
         delete player;
         delete dealer;
         delete deck;
         exit(1);
     }
-
 
     const void MainDisplayPrint(void)
     {
@@ -226,6 +216,5 @@ namespace blackjack
         std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$  \\ $$| $$ /$$__  $$| $$      | $$_  $$ | $$  | $$ /$$__  $$| $$      | $$_  $$ \n");
         std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("| $$$$$$$/| $$|  $$$$$$$|  $$$$$$$| $$ \\  $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$\\  $$\n");
         std::cout << color::printwithcolor < color::ansi_color_codes::bright_red>("|_______/ |__/ \\_______/ \\_______/|__/  \\__/ \\______/  \\_______/ \\_______/|__/  \\__/\n");
-
     }
 }

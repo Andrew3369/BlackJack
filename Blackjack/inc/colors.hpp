@@ -1,11 +1,10 @@
 #pragma once
 #include<iostream>
 #include<string>
-#include<thread>
-#include<chrono>
 #include<sstream>
 
-namespace color {
+namespace color
+{
     enum ansi_color_codes
     {
         black = 30,
