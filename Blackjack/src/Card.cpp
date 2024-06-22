@@ -9,13 +9,29 @@ void Card::display() const
 
 	_setmode(_fileno(stdout), _O_U16TEXT);
 	std::wcout << L"┌─────────┐\n";
-	std::wcout << L"\x2502 " << rankStr;
-	std::wcout << L"       \x2502\n";
+	if (rankStr == L"\x0031\x0030")
+	{
+		std::wcout << L"\x2502 " << rankStr;
+		std::wcout << L"      \x2502\n";
+	}
+	else
+	{
+		std::wcout << L"\x2502 " << rankStr;
+		std::wcout << L"       \x2502\n";
+	}
 	std::wcout << L"│         │\n";
 	std::wcout << L"│    " << suitStr << L"    │\n";
 	std::wcout << L"│         │\n";
-	std::wcout << L"│       " << rankStr;
-	std::wcout << L" │\n";
+	if (rankStr == L"\x0031\x0030")
+	{
+		std::wcout << L"│       " << rankStr;
+		std::wcout << L"│\n";
+	}
+	else
+	{
+		std::wcout << L"│       " << rankStr;
+		std::wcout << L" │\n";
+	}
 	std::wcout << L"└─────────┘\n";
 	std::wcout << std::endl;
 	_setmode(_fileno(stdout), _O_TEXT);
