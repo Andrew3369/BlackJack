@@ -1,22 +1,15 @@
-#include "../inc/Blackjack.hpp"
+//#include "../inc/Blackjack.hpp"
+#include "../inc/GameEngine.hpp"
+using namespace std;
 
-//HELLO ANDREW AND CARTER
 int main(int argc, char* argv[])
 {
-	
-	// Initializing the game
-	Player* player = new Player(10000);
-	Dealer* dealer = new Dealer();
-	Deck* deck = new Deck();
 
-	// smart pointers
-	/*auto player = std::make_unique<Player>(10000);
-	auto dealer = std::make_unique<Dealer>();
-	auto deck = std::make_unique<Deck>();*/
+	unique_ptr<GameEngine> engine = make_unique<GameEngine>(10000);
+	engine->MainGameLoop();
 
-	blackjack::MainDisplayPrint();
-	blackjack::MainGameLoop(player, dealer, deck);
-	blackjack::KillGame(player, dealer, deck);
+	/*auto engine = make_unique<Engine>(10000);
+	engine->MainGameLoop();*/
 
 	return 0;
 }

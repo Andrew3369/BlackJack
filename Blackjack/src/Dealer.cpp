@@ -1,4 +1,5 @@
 ﻿#include "../inc/Dealer.hpp"
+#include <numeric>
 
 Dealer::Dealer() {}
 
@@ -51,12 +52,20 @@ void Dealer::addCard(Card card)
 
 int Dealer::getTotalValue() const
 {
-	int totalValue = 0;
+	/*int totalValue = 0;
 	for (const Card& card : hand)
 	{
 		totalValue += card.getValue();
 	}
-	return totalValue;
+	return totalValue;*/
+
+	// accumalate algorithm
+	return std::accumulate
+	(hand.begin(), hand.end(), 
+	0, [](int sum, const Card& card) 
+	{
+			return sum + card.getValue();
+	});
 }
 
 int Dealer::getFirstCardValue() const

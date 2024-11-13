@@ -19,6 +19,7 @@ public:
 	void displayHand() const;
 	void addChips(int amount);
 	int getChips() const;
+	const size_t getHandSize();
 	void removeChips(int amount);
 	void addCard(Card card);
 	int getTotalValue() const;

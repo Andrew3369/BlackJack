@@ -30,6 +30,9 @@
     <ClCompile Include="src\Deck.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Card.hpp">
@@ -44,10 +47,10 @@
     <ClInclude Include="inc\Dealer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Blackjack.hpp">
+    <ClInclude Include="inc\colors.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inc\colors.hpp">
+    <ClInclude Include="inc\GameEngine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

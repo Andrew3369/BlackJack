@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Deck.cpp" />
+    <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Card.cpp" />
     <ClCompile Include="src\Dealer.cpp" />
@@ -138,7 +139,7 @@
     <ClInclude Include="inc\colors.hpp" />
     <ClInclude Include="inc\Dealer.hpp" />
     <ClInclude Include="inc\Deck.hpp" />
-    <ClInclude Include="inc\Blackjack.hpp" />
+    <ClInclude Include="inc\GameEngine.hpp" />
     <ClInclude Include="inc\Player.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
