@@ -13,6 +13,12 @@ int Player::getChips() const
 	return chips; // return the current amount of chips
 }
 
+const size_t Player::getHandSize()
+{
+	//size_t size = hand.size();
+	return hand.size();
+}
+
 void Player::removeChips(int amount)
 {
 	chips -= amount; // remove chips from player
@@ -32,7 +38,10 @@ int Player::getTotalValue() const
 	}
 	return totalValue;*/
 
-	return std::accumulate(hand.begin(), hand.end(), 0);
+	return std::accumulate(hand.begin(), hand.end(), 0,
+		[](int sum, const Card& card) {
+			return sum + card.getValue();
+		});
 }
 
 void Player::doubleDown()
