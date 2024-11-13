@@ -70,7 +70,7 @@ inline void GameEngine::StartGame()
 
     catch (const std::exception& error)
     {
-        std::cerr << error.what() << " Inside of [blackjack::StartGame()]" << std::endl;
+        std::cerr << error.what() << " Inside of [StartGame()]" << std::endl;
     }
 }
 
@@ -85,7 +85,7 @@ inline void GameEngine::ResetGame()
 
     catch (const std::exception& error)
     {
-        std::cerr << error.what() << " Inside of [blackjack::ResetGame()]" << std::endl;
+        std::cerr << error.what() << " Inside of [ResetGame()]" << std::endl;
     }
 }
 
