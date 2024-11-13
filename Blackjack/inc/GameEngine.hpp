@@ -31,7 +31,6 @@ public:
 	inline void DisplayFullHands() const;
 	inline void DealerStandPlay(int32_t wageredChips);
 	inline void PlayerDoubleDown(int32_t wageredChips);
-	//void KillGame(Player* player, Dealer* dealer, Deck* deck);
 	inline void ResetGame();
 
 	GameEngine(int32_t chips) : p_Player(), p_Dealer(), p_Deck()
@@ -40,18 +39,7 @@ public:
 		p_Dealer = new Dealer();
 		p_Deck = new Deck();
 
-		try
-		{
-			p_Player->addCard(p_Deck->dealCard());
-			p_Dealer->addCard(p_Deck->dealCard());
-			p_Player->addCard(p_Deck->dealCard());
-			p_Dealer->addCard(p_Deck->dealCard());
-		}
-
-		catch (const std::exception& error)
-		{
-			std::cerr << error.what() << " Inside of [blackjack::StartGame()]" << std::endl;
-		}
+		StartGame();
 	}
 
 	~GameEngine()
