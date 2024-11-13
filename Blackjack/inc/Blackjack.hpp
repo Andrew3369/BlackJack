@@ -178,14 +178,15 @@ namespace blackjack
 		}
 		else
 		{
-			chipsWager *= 2;
+			//chipsWager *= 2;
+            chipsWager * 2;
 			player->addCard(deck->dealCard());
 			DealerStandPlay(player, dealer, deck, chipsWager);
             GameConditions(player, dealer, deck, chipsWager, true);
 		}
     }
 
-    void Display(Player* player, Dealer* dealer)
+    void Display(const Player* player, Dealer* dealer)
     {
         std::cout << "Dealer's Hand: \n"; dealer->displayHand();
         std::cout << "\nHand total: " << dealer->getFirstCardValue();
@@ -196,7 +197,7 @@ namespace blackjack
         std::cout << "\n========================\n";
     }
 
-    inline void DisplayFullHands(Player* player, Dealer* dealer)
+    inline void DisplayFullHands(const Player* player, Dealer* dealer)
     {
         std::cout << "Dealer's Hand: \n"; dealer->displayFullHand();
         std::cout << "\nHand total: " << dealer->getTotalValue();

@@ -1,4 +1,5 @@
 #include "../inc/Player.hpp"
+#include <numeric>
 
 
 void Player::addChips(int amount)
@@ -24,12 +25,14 @@ void Player::addCard(Card card)
 
 int Player::getTotalValue() const
 {
-	int totalValue = 0;
+	/*int totalValue = 0;
 	for (const Card& card : hand) 
 	{
 		totalValue += card.getValue();
 	}
-	return totalValue;
+	return totalValue;*/
+
+	return std::accumulate(hand.begin(), hand.end(), 0);
 }
 
 void Player::doubleDown()
