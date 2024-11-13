@@ -5,3 +5,6 @@
 # linux stuff below
 /Blackjack/obj
 /Blackjack/bin
+
+# remove vs user thing
+Blackjack.vcxproj.user
