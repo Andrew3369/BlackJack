@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AuthSystem.cpp" />
     <ClCompile Include="src\Deck.cpp" />
     <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\AuthSystem.hpp" />
     <ClInclude Include="inc\Card.hpp" />
     <ClInclude Include="inc\colors.hpp" />
     <ClInclude Include="inc\Dealer.hpp" />

@@ -1,14 +1,28 @@
 #pragma once
 #include <iostream>
+#include <string>
 #include <chrono>
 #include <thread>
 #include <cstdlib>
+#include <unordered_map>
+#include <memory>
 
+// dynamoDB
+#include <aws/core/Aws.h>
+#include <aws/dynamodb/DynamoDBClient.h>
+#include <aws/dynamodb/model/GetItemRequest.h>
+#include <aws/dynamodb/model/PutItemRequest.h>
+#include <aws/dynamodb/model/AttributeValue.h>
+
+// blackjack object files
 #include "../inc/Card.hpp"
 #include "../inc/Player.hpp"
 #include "../inc/Dealer.hpp"
 #include "../inc/Deck.hpp"
 #include "../inc/colors.hpp"
+#include "../inc/AuthSystem.hpp"
+
+#define ERROR = -1
 
 const int g_BLACKJACK = 21;
 const int g_DEALER_STAND_THRESHOLD = 17;
@@ -22,7 +36,6 @@ private:
 	Deck* p_Deck;
 
 public:
-	// game logic
 	const void MainDisplayPrint(void);
 	void MainGameLoop();
 	inline void StartGame();
