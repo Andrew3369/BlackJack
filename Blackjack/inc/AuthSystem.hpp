@@ -11,6 +11,8 @@ private:
 public:
     AuthSystem(Aws::DynamoDB::DynamoDBClient* client) : m_client(client) {}
 
+	bool TestDBConnection();
+
     bool Login();
     bool Register();
 };

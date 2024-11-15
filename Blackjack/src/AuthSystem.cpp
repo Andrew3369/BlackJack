@@ -1,13 +1,37 @@
 #include "../inc/AuthSystem.hpp"
 using namespace std;
 
-bool AuthSystem::Login() 
+bool AuthSystem::TestDBConnection()
 {
-    if (!m_client) 
-        cout << "Client not initialized\n"; return false;
+    Aws::DynamoDB::DynamoDBClient dynamoClient;
+    Aws::DynamoDB::Model::ListTablesRequest request;
+    auto outcome = dynamoClient.ListTables(request);
+
+    if (!outcome.IsSuccess()) 
+    {
+        cout << "Failed to connect to DynamoDB: " << outcome.GetError().GetMessage() << std::endl;
+        return false;
+    }
+    //cout << "Successfully connected to DynamoDB!" << std::endl;
+    return true;
+}
+
+bool AuthSystem::Login()
+{
+    if (!m_client)
+    {
+        cout << "Client not initialized\n";
+        return false;
+    }
+
+    if (!TestDBConnection()) 
+    {
+        std::cout << "Unable to connect to DynamoDB. Please check your AWS configuration." << std::endl;
+        return false;
+    }
 
     string username, password; 
-    cout << "Username: "; 
+    cout << "Username: ";
     cin >> username;
 	if (cin.fail()) //handle any bad input
     {
@@ -30,7 +54,7 @@ bool AuthSystem::Login()
 
 	// Set the key
     Aws::Map<Aws::String, Aws::DynamoDB::Model::AttributeValue> key;
-    key.emplace("username", Aws::DynamoDB::Model::AttributeValue().SetS(username.c_str()));
+    key.emplace("UserID", Aws::DynamoDB::Model::AttributeValue().SetS(username.c_str()));
     request.SetKey(move(key));
 
     auto outcome = m_client->GetItem(request);
@@ -42,11 +66,17 @@ bool AuthSystem::Login()
 
     const auto& item = outcome.GetResult().GetItem();
     if (item.empty()) 
-        cout << "User not found.\n"; return false;
+    {
+        cout << "User not found.\n";
+        return false;
+    }
 
     auto passwordIter = item.find("password");
     if (passwordIter == item.end()) 
-        cout << "Invalid user data.\n"; return false;
+    {
+        cout << "Invalid user data.\n";
+        return false;
+    }
 
 
     const Aws::String& storedPassword = passwordIter->second.GetS();
@@ -55,8 +85,17 @@ bool AuthSystem::Login()
 
 bool AuthSystem::Register() 
 {
-    if (!m_client) 
-        cout << "Client not initialized\n"; return false;
+    if (!m_client)
+    {
+        cout << "Client not initialized\n";
+        return false;
+    }
+
+    if (!TestDBConnection())
+    {
+        std::cout << "Unable to connect to DynamoDB. Please check your AWS configuration." << std::endl;
+        return false;
+    }
 
 
     string username, password;
@@ -80,9 +119,9 @@ bool AuthSystem::Register()
     request.SetTableName(TABLE_NAME);
 
     Aws::Map<Aws::String, Aws::DynamoDB::Model::AttributeValue> item;
-    item.emplace("username", Aws::DynamoDB::Model::AttributeValue().SetS(username.c_str()));
+    item.emplace("UserID", Aws::DynamoDB::Model::AttributeValue().SetS(username.c_str()));
     item.emplace("password", Aws::DynamoDB::Model::AttributeValue().SetS(password.c_str()));
-    item.emplace("chips", Aws::DynamoDB::Model::AttributeValue().SetN("10000"));
+    //item.emplace("chips", Aws::DynamoDB::Model::AttributeValue().SetN("10000"));
     request.SetItem(move(item));
 
     auto outcome = m_client->PutItem(request);
